@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layouts/home :: head(title=${post.title})">
+    <script type="text/javascript">
+        (function () {
+            var event = document.addEventListener ? {
+                add: 'addEventListener',
+                focus: 'focus',
+                load: 'DOMContentLoaded'
+            } : {
+                add: 'attachEvent',
+                focus: 'onfocus',
+                load: 'onload'
+            };
+
+            document[event.add](event.load, function () {
+                var r = document.getElementById('respond-post-13');
+
+                if (null != r) {
+                    var forms = r.getElementsByTagName('form');
+                    if (forms.length > 0) {
+                        var f = forms[0], textarea = f.getElementsByTagName('textarea')[0], added = false;
+
+                        if (null != textarea && 'text' == textarea.name) {
+                            textarea[event.add](event.focus, function () {
+                                if (!added) {
+                                    var input = document.createElement('input');
+                                    input.type = 'hidden';
+                                    input.name = '_';
+                                    input.value = (function () {
+                                        var _i6OJC = 'e1d'//'s3f'
+                                                + 'bc9'//'FYs'
+                                                + /* 'CF'//'CF' */'' +//'1'
+                                                '347' + /* 'dD'//'dD' */'' + 'ea'//'P'
+                                                + 'whn'//'whn'
+                                                +//'tak'
+                                                '17' +//'KZP'
+                                                'e' +//'8h'
+                                                '19' + 'e'//'Nbk'
+                                                +//'r'
+                                                'b' + '2'//'7v'
+                                                +//'od'
+                                                '365' +//'jHz'
+                                                '5a' + '8vK'//'8vK'
+                                                + ''///*'GH'*/'GH'
+                                                + '2ac'//'dsT'
+                                                +//'dV'
+                                                '02' + '5b'//'BV'
+                                                +//'pZT'
+                                                'd', _Fl9 = [[11, 14], [24, 27]];
+
+                                        for (var i = 0; i < _Fl9.length; i++) {
+                                            _i6OJC = _i6OJC.substring(0, _Fl9[i][0]) + _i6OJC.substring(_Fl9[i][1]);
+                                        }
+
+                                        return _i6OJC;
+                                    })();
+
+                                    f.appendChild(input);
+                                    added = true;
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        })();
+    </script>
+</head>
+<body class="custom-background">
+<div class="main">
+    <div class="header" th:include="layouts/home :: nav-header"></div>
+    <div class="secHeader" th:include="layouts/home :: nav-secheader"></div>
+
+    <div class="content">
+        <div class="float-nav">
+            <ul class="ex-menu">
+                <li>
+                    <a onclick="goToTop();">回到顶部</a>
+                    <i class="fa fa-arrow-up"></i>
+                </li>
+            </ul>
+            <a class="top" title="发表评论">
+                <i class="fa fa-comments"></i>
+            </a>
+        </div>
+        <div class="wrapp">
+            <div class="page">
+                <div class="top">
+                    <div class="title">
+                        <a class="p-title" rel="bookmark">
+                            <i class="fa fa-file-text-o"></i><span th:text="${post.title}"></span></a>
+                    </div>
+                    <div class="info">
+                        <div class="white">
+                            <span class="date" th:text="${#dates.format(post.createdAt,'yyyy/MM/dd')}"></span>
+                            <span class="dot"> - </span>
+                            <span class="dot"> - </span>
+                            <span class="comment">暂无评论</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="entry" th:utext="${post.content}"></div>
+            </div>
+            <div class="comments-wrapp">
+                <div class="topbar">
+                    <div class="wrapp">
+                        <div class="left">
+                            <li class="num"><a>评论 (0条)</a></li>
+                        </div>
+                    </div>
+                </div>
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    var TypechoComment = {
+                        dom: function (id) {
+                            return document.getElementById(id);
+                        },
+
+                        create: function (tag, attr) {
+                            var el = document.createElement(tag);
+
+                            for (var key in attr) {
+                                el.setAttribute(key, attr[key]);
+                            }
+
+                            return el;
+                        },
+
+                        reply: function (cid, coid) {
+                            this.dom('cancel-comment-reply-link').style.display = 'none';
+
+                            var comment = this.dom(cid), parent = comment.parentNode,
+                                    response = this.dom('respond-page-5'), input = this.dom('comment-parent'),
+                                    form = 'form' == response.tagName ? response : response.getElementsByTagName('form')[0];
+
+                            if (null == input) {
+                                input = this.create('input', {
+                                    'type': 'hidden',
+                                    'name': 'parent',
+                                    'id': 'comment-parent'
+                                });
+
+                                form.appendChild(input);
+                            }
+
+                            input.setAttribute('value', coid);
+                            $('.respond-bk').addClass('is-on');
+
+                            return false;
+                        },
+
+                        cancelReply: function () {
+                            var response = this.dom('respond-page-5'),
+                                    holder = this.dom('comment-form-place-holder'), input = this.dom('comment-parent');
+
+                            if (null != input) {
+                                input.parentNode.removeChild(input);
+                            }
+
+                            if (null == holder) {
+                                return true;
+                            }
+
+                            this.dom('cancel-comment-reply-link').style.display = 'none';
+                            holder.parentNode.insertBefore(response, holder);
+                            return false;
+                        }
+                    }
+                    //]]>
+                </script>
+                <ol class="comment-main">
+                    <div class="none">暂无评论，快来抢沙发吧！</div>
+                </ol>
+                <div class="respond-bk">
+                    <div class="respond-main" style="top: 10.5px;">
+                        <span class="nws-line"></span>
+                        <div class="subscribe-bg"></div>
+                        <div class="smilelink">
+                            <div class="faceIt wrapp wrapp-active">
+                                <a onclick="javascript:grin('|∀ﾟ')">|∀ﾟ</a>
+                                <a onclick="javascript:grin('(´ﾟДﾟ`)')">(´ﾟДﾟ`)</a>
+                                <a onclick="javascript:grin('(;´Д`)')">(;´Д`)</a>
+                                <a onclick="javascript:grin('(｀･ω･)')">(｀･ω･)</a>
+                                <a onclick="javascript:grin('(=ﾟωﾟ)=')">(=ﾟωﾟ)=</a>
+                                <a onclick="javascript:grin('| ω・´)')">| ω・´)</a>
+                                <a onclick="javascript:grin('|-` )">|-` )</a>
+                                <a onclick="javascript:grin('(´ﾟДﾟ`)')">(´ﾟДﾟ`)</a>
+                                <a onclick="javascript:grin('|д` )">|д` )</a>
+                                <a onclick="javascript:grin('|ー` )')">|ー` )</a>
+                                <a onclick="javascript:grin('|∀` )')">|∀` )</a>
+                                <a onclick="javascript:grin('(つд⊂)')">(つд⊂)</a>
+                                <a onclick="javascript:grin('(ﾟДﾟ≡ﾟДﾟ)')">(ﾟДﾟ≡ﾟДﾟ)</a>
+                                <a onclick="javascript:grin('(＾o＾)ﾉ')">(＾o＾)ﾉ</a>
+                                <a onclick="javascript:grin('(|||ﾟДﾟ)')">(|||ﾟДﾟ)</a>
+                                <a onclick="javascript:grin('( ﾟ∀ﾟ)')">( ﾟ∀ﾟ)</a>
+                                <a onclick="javascript:grin('( ´∀`)')">( ´∀`)</a>
+                                <a onclick="javascript:grin('(*´∀`)')">(*´∀`)</a>
+                                <a onclick="javascript:grin('(*ﾟ∇ﾟ)')">(*ﾟ∇ﾟ)</a>
+                                <a onclick="javascript:grin('(*ﾟーﾟ)')">(*ﾟーﾟ)</a>
+                                <a onclick="javascript:grin('(　ﾟ 3ﾟ)')">(　ﾟ 3ﾟ)</a>
+                                <a onclick="javascript:grin('( ´ー`)')">( ´ー`)</a>
+                                <a onclick="javascript:grin('( ・_ゝ・)')">( ・_ゝ・)</a>
+                                <a onclick="javascript:grin('( ´_ゝ`)')">( ´_ゝ`)</a>
+                                <a onclick="javascript:grin('(*´д`)')">(*´д`)</a>
+                                <a onclick="javascript:grin('(・ー・)')">(・ー・)</a>
+                                <a onclick="javascript:grin('(・∀・)')">(・∀・)</a>
+                                <a onclick="javascript:grin('(ゝ∀･)')">(ゝ∀･)</a>
+                                <a onclick="javascript:grin('(〃∀〃)')">(〃∀〃)</a>
+                                <a onclick="javascript:grin('(*ﾟ∀ﾟ*)')">(*ﾟ∀ﾟ*)</a>
+                                <a onclick="javascript:grin('( ﾟ∀。)')">( ﾟ∀。)</a>
+                                <a onclick="javascript:grin('( `д´)')">( `д´)</a>
+                                <a onclick="javascript:grin('(`ε´ )')">(`ε´ )</a>
+                                <a onclick="javascript:grin('(`ヮ´ )')">(`ヮ´ )</a>
+                                <a onclick="javascript:grin('σ`∀´)')">σ`∀´)</a>
+                                <a onclick="javascript:grin('ﾟ∀ﾟ)σ')">ﾟ∀ﾟ)σ</a>
+                                <a onclick="javascript:grin('ﾟ ∀ﾟ)')">ﾟ ∀ﾟ)</a>
+                                <a onclick="javascript:grin('(╬ﾟдﾟ)')">(╬ﾟдﾟ)</a>
+                                <a onclick="javascript:grin('(|||ﾟдﾟ)')">(|||ﾟдﾟ)</a>
+                                <a onclick="javascript:grin('( ﾟдﾟ)')">( ﾟдﾟ)</a>
+                                <a onclick="javascript:grin('Σ( ﾟдﾟ)')">Σ( ﾟдﾟ)</a>
+                                <a onclick="javascript:grin('( ;ﾟдﾟ)')">( ;ﾟдﾟ)</a>
+                                <a onclick="javascript:grin('( ;´д`)')">( ;´д`)</a>
+                                <a onclick="javascript:grin('(　д ) ﾟ ﾟ')">(　д ) ﾟ ﾟ</a>
+                                <a onclick="javascript:grin('( ☉д⊙)')">( ☉д⊙)</a>
+                                <a onclick="javascript:grin('(((　ﾟдﾟ)))')">(((　ﾟдﾟ)))</a>
+                                <a onclick="javascript:grin('( ` ・´)')">( ` ・´)</a>
+                                <a onclick="javascript:grin('( ´д`)')">( ´д`)</a>
+                                <a onclick="javascript:grin('( -д-)')">( -д-)</a>
+                                <a onclick="javascript:grin('(>д<)')">(&gt;д&lt;)</a>
+                                <a onclick="javascript:grin('･ﾟ( ﾉд`ﾟ)')">･ﾟ( ﾉд`ﾟ)</a>
+                                <a onclick="javascript:grin('( TдT)')">( TдT)</a>
+                                <a onclick="javascript:grin('(￣∇￣)')">(￣∇￣)</a>
+                                <a onclick="javascript:grin('(￣3￣)')">(￣3￣)</a>
+                                <a onclick="javascript:grin('(￣ｰ￣)')">(￣ｰ￣)</a>
+                                <a onclick="javascript:grin('(￣ . ￣)')">(￣ . ￣)</a>
+                                <a onclick="javascript:grin('(￣皿￣)')">(￣皿￣)</a>
+                                <a onclick="javascript:grin('(￣艸￣)')">(￣艸￣)</a>
+                                <a onclick="javascript:grin('(￣︿￣)')">(￣︿￣)</a>
+                                <a onclick="javascript:grin('(￣︶￣)')">(￣︶￣)</a>
+                                <a onclick="javascript:grin('ヾ(´ωﾟ｀)')">ヾ(´ωﾟ｀)</a>
+                                <a onclick="javascript:grin('(*´ω`*)')">(*´ω`*)</a>
+                                <a onclick="javascript:grin('(・ω・)')">(・ω・)</a>
+                                <a onclick="javascript:grin('( ´・ω)')">( ´・ω)</a>
+                                <a onclick="javascript:grin('(｀・ω)')">(｀・ω)</a>
+                                <a onclick="javascript:grin('(´・ω・`)')">(´・ω・`)</a>
+                                <a onclick="javascript:grin('(`・ω・´)')">(`・ω・´)</a>
+                                <a onclick="javascript:grin('( `_っ´)')">( `_っ´)</a>
+                                <a onclick="javascript:grin('( `ー´)')">( `ー´)</a>
+                                <a onclick="javascript:grin('>( ´_っ`)')">&gt;( ´_っ`)</a>
+                                <a onclick="javascript:grin('( ´ρ`)')">( ´ρ`)</a>
+                                <a onclick="javascript:grin('( ﾟωﾟ)')">( ﾟωﾟ)</a>
+                                <a onclick="javascript:grin('(oﾟωﾟo)')">(oﾟωﾟo)</a>
+                                <a onclick="javascript:grin('(　^ω^)')">(　^ω^)</a>
+                                <a onclick="javascript:grin('(｡◕∀◕｡)')">(｡◕∀◕｡)</a>
+                                <a onclick="javascript:grin('/( ◕‿‿◕ )\')">/( ◕‿‿◕ )\</a>
+                                <a onclick="javascript:grin('ヾ(´ε`ヾ)')">ヾ(´ε`ヾ)</a>
+                                <a onclick="javascript:grin('(ノﾟ∀ﾟ)')">(ノﾟ∀ﾟ)</a>
+                                <a onclick="javascript:grin('(σﾟдﾟ)σ')">(σﾟдﾟ)σ</a>
+                            </div>
+                            <div class="sm-bottom">
+                                <a class="faceItemLnk current" onclick="faceItem()">表情</a>
+                                <a class="faceCloseLnk" onclick="closeFaceSelect()">关闭</a>
+                            </div>
+                        </div>
+                        <div id="respond-page-5" class="comment-respond">
+                            <h3 id="reply-title" class="comment-reply-title">发表评论</h3>
+                            <small><a id="cancel-comment-reply-link" href="https://niconiconi.org/about#respond-page-5"
+                                      rel="nofollow" style="display:none"
+                                      onclick="return TypechoComment.cancelReply();">取消回复</a></small>
+                            <form action="https://niconiconi.org/about/comment" method="post" id="comment-form"
+                                  class="comment-form">
+                                <p class="comment-form-field">登录身份: <a href="https://niconiconi.org/admin/profile.php">Volio</a>，<a
+                                        href="https://niconiconi.org/action/logout" title="Logout">退出 &raquo;</a></p>
+                                <p class="comment-form-comment">
+                                    <textarea id="textarea" name="text" aria-required="true"
+                                              placeholder="说点什么…"></textarea>
+                                </p>
+                                <p class="form-toolbar">
+                                    <a onclick="showFaceSelect()" class="addSmile" title="表情"><i
+                                            class="fa fa-smile-o"></i></a>
+                                    <!-- 以下两行如需使用请先在后台-设置-评论中允许使用a与img标签 -->
+                                    <!--<a class="addLink" href="javascript:grin('<a href=&quot;请输入网站地址&quot;></a>')" title="网址"><i class="fa fa-link"></i></a>-->
+                                    <!--<a class="addPic" href="javascript:grin('<img src=&quot;请输入图片地址&quot;></img>')" title="图片"><i class="fa fa-image"></i></a>-->
+                                </p>
+                                <p class="form-btm-cancel">
+                                    <input type="button" onclick="hiddenReplyForm()" id="form-bottom-cancel"
+                                           class="cancel" value="取消评论" input="">
+                                </p>
+                                <p class="form-submit">
+                                    <input name="submit" type="submit" id="submit" value="发表评论">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" th:include="layouts/home :: footer"></div>
+</div>
+</body>
+</html>

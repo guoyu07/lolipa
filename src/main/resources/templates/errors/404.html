@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layouts/home :: head(title=${title})">
+</head>
+<body class="custom-background">
+<div class="main">
+    <div class="header" th:include="layouts/home :: nav-header"></div>
+    <div class="secHeader" th:include="layouts/home :: nav-secheader"></div>
+
+    <div class="content">
+        <div class="wrapp">
+            <div class="no-more-content">
+                <p>沒有更多內容 ヽ(｀⌒´)ノ</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" th:include="layouts/home :: footer"></div>
+</div>
+</body>
+</html>

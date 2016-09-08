@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layouts/home :: head(title=${title})">
+</head>
+<body class="custom-background">
+<div class="main">
+    <div class="header" th:include="layouts/home :: nav-header"></div>
+    <div class="secHeader" th:include="layouts/home :: nav-secheader"></div>
+
+    <div class="content">
+        <div class="wrapp">
+            <div class="post" th:each="post : ${posts}">
+                <div class="top">
+                    <div class="title">
+                        <a class="p-title" rel="bookmark"
+                           th:href="${'/archives/'+post.slug}"><i class="fa fa-file-text-o"></i><span
+                                th:text="${post.title}"></span></a>
+                    </div>
+                    <div class="info">
+                        <div class="white">
+                            <span class="date" th:text="${#dates.format(post.createdAt,'yyyy/MM/dd')}"></span>
+                            <span class="dot"> - </span>
+                            <span class="category">
+                            <ul class="post-categories">
+                                <li><a href="https://niconiconi.org/category/study/">学习</a></li>
+                            </ul>
+                            </span>
+                            <span class="dot"> - </span>
+                            <span class="comment"
+                                  th:text="${post.commentNum==0}?${'暂无评论'}:${post.commentNum+' 条评论'}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="entry" th:utext="${post.content}">Content</div>
+                <div class="bottom">
+                    <div class="left">
+                        <a class="more ripple" th:href="${'/archives/'+post.slug}"><i
+                                class="fa fa-caret-square-o-right"></i>阅读全文</a>
+                    </div>
+                    <div class="right">
+                        <div class="tag">
+                            <a href="https://niconiconi.org/tag/typecho/">typecho</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-navi">
+                <span class="line-left line"></span>
+                <div class="white">
+                    <li>
+                        <ol class="page-navigator">
+                            <li class="prev" th:if="${pageNum>1}"><a th:href="@{'/page/'+${pageNum-1}}">&laquo; Previous </a></li>
+                            <li class="next" th:if="${pageNum<allPageNum}"><a th:href="@{'/page/'+${pageNum+1}}"> Next &raquo;</a></li>
+                        </ol>
+                    </li>
+                </div>
+                <span class="line-right line"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" th:include="layouts/home :: footer"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" th:href="@{/resources/favicon.ico}">
+    <title th:if="${title}!=null" th:text="${title}+' - Volio\'s Blog'"></title>
+    <title th:if="${title}==null" th:text="'Volio\'s Blog'"></title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}" type="text/css" media="screen"/>
+    <link rel="stylesheet" th:href="@{/resources/css/font-awesome.min.css}" type="text/css" media="screen"/>
+    <script type="text/javascript" th:src="@{/resources/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/resources/js/finally.js}"></script>
+    <!--[if lt IE 10]>
+    <script type="text/javascript" th:src="@{/resources/js/placeholder.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input, textarea').placeholder();
+        });
+    </script>
+    <![endif]-->
+</head>
+<body class="custom-background">
+<div class="main">
+    <div class="header" th:fragment="nav-header">
+        <div class="title">
+            <a th:href="@{/}">Volio's Blog</a>
+        </div>
+        <div class="navigation">
+            <div class="left">
+                <ul class="menu">
+                    <li><a th:href="@{/}"><i class="fa fa-home"></i>首页</a></li>
+                    <li><a th:href="@{/links}"><i class="fa fa-link"></i>友情链接</a></li>
+                    <li><a th:href="@{/about}"><i class="fa fa-link"></i>关于</a></li>
+                </ul>
+            </div>
+            <div class="mobile">
+                <ul>
+                    <li>
+                        <a class="mobile-menu-toggle" title="菜单"><i class="fa fa-th-list"></i></a>
+                        <select class="mobile-menu-drop" id="m-menu" onchange="location.href=this.value">
+                            <option th:value="@{/}">Volio's Blog</option>
+                            <option th:href="@{/links}">友情链接</option>
+                            <option th:href="@{/about}">关于</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <div class="default">
+                <ul>
+                    <li class="line"><span></span></li>
+                    <li class="search"><a title="搜索"><i class="fa fa-search"></i></a></li>
+                    <li class="rss"><a href="https://niconiconi.org/feed/" title="订阅本站" target="_blank"><i
+                            class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="search-form">
+            <span class="dot"></span>
+            <form id="searchform" class="searchform" th:action="@{/}" method="post" role="Search">
+                <input class="box" id="s" type="text" name="s" x-webkit-grammar="builtin:search"
+                       placeholder="搜索...">
+            </form>
+        </div>
+    </div>
+    <div class="secHeader" th:fragment="nav-secheader"><i class="fa fa-bullhorn"></i>Oooooooooops.</div>
+
+    <div class="footer" th:fragment="footer">
+        <p><span class="date">&copy; 2016</span><a class="title" href="https://niconiconi.org/" title="Volio's Blog">Volio's Blog</a></p>
+        <p>自豪地使用 Tsin 主題</p>
+    </div>
+</div>
+</body>
+</html>
