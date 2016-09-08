@@ -3,13 +3,6 @@
 CSS Name: Finally
 CSS URI: http://tsin.us
 CSS Author: 千歲君
-
-Edit Name: Doby Tsin Theme
-Edit URI: http://blog.dobyi.com
-Edit Author: Doby
-
-Description: Doby针对于Typecho做了CSS调整与优化
-Version: 1.9
 */
 
 /* Reset */
@@ -1625,7 +1618,7 @@ textarea {
 }
 
 .comment-reply-right a {
-    color: #9A9A9A;
+    color: #9A9A9A !important;
 }
 
 .comment-reply-right a:before {
@@ -1639,6 +1632,9 @@ textarea {
 }
 
 .comment-reply-right a:hover {
-    color: #2DB6CF;
-!important;
+    color: #2DB6CF !important;
+}
+
+.comment-form-author {
+    margin:0 !important;
 }

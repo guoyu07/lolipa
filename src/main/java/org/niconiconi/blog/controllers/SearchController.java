@@ -6,10 +6,7 @@ import org.niconiconi.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,8 +20,8 @@ public class SearchController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping(value = "/{keyword}", method = RequestMethod.GET)
-    public String getPost(@PathVariable("keyword") String keyword, Model model) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String getPost(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
         List<Post> posts = postService.searchPosts(keyword);
         model.addAttribute("title", "包含关键字 " + keyword + " 的文章");
         if (posts.isEmpty()) {

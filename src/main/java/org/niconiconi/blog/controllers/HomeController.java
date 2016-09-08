@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Objects;
 
 /**
  * Created by Volio on 2016/9/3.
@@ -29,11 +32,13 @@ public class HomeController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String searchRedirect(@RequestParam(value = "s", required = false) String s) {
-        if (s == "")
+    public String searchRedirect(@RequestParam(value = "s", required = false) String s, RedirectAttributes attributes) {
+        if (Objects.equals(s, ""))
             return "redirect:/";
-        else
-            return "redirect:/search/" + s;
+        else {
+            attributes.addAttribute("keyword", s);
+            return "redirect:/search";
+        }
     }
 
     //分页查询
@@ -44,8 +49,8 @@ public class HomeController {
         if (posts.getNumberOfElements() == 0) {
             throw new NotFoundException();
         }
-        model.addAttribute("allPageNum",posts.getTotalPages());
-        model.addAttribute("pageNum",pageNum+1);
+        model.addAttribute("allPageNum", posts.getTotalPages());
+        model.addAttribute("pageNum", pageNum + 1);
         model.addAttribute("posts", posts);
         return "home/index";
     }

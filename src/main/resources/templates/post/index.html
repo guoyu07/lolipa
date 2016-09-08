@@ -69,8 +69,8 @@
                     //]]>
                 </script>
                 <ol class="comment-main">
-                    <ol class="comment-list" th:each="comment:${comments}">
-                        <li itemscope itemtype="http://schema.org/UserComments" th:id="'comment-'+${comment.coid}"
+                    <ol class="comment-list">
+                        <li itemscope itemtype="http://schema.org/UserComments" th:each="comment:${comments}" th:id="'comment-'+${comment.coid}"
                             class="comment-body comment-parent comment-even">
                             <div class="comment-author" itemprop="creator" itemscope
                                  itemtype="http://schema.org/Person">
@@ -83,7 +83,7 @@
                             <div class="comment-meta">
                                 <a>
                                     <time itemprop="commentTime"
-                                          th:text="${#dates.format(post.createdAt,'yyyy年M月d日 HH时mm分')}"></time>
+                                          th:text="${#dates.format(comment.createdAt,'yyyy年M月d日 HH时mm分')}"></time>
                                 </a>
                                 <div class="comment-reply-right">
                                     <a th:onclick="'return Comment.reply(\''+${comment.author}+'\');'">回复</a>
@@ -187,9 +187,10 @@
                         </div>
                         <div id="response-post" class="comment-respond">
                             <h3 id="reply-title" class="comment-reply-title">发表评论</h3>
-                            <form action="https://niconiconi.org/archives/dplayer-for-typecho/comment" method="post"
+                            <form th:action="@{/article/comment}" method="post"
                                   id="comment-form" class="comment-form">
                                 <p class="comment-form-field comment-form-author">
+                                    <input name="cid" th:value="${post.id}" type="hidden">
                                     <input id="author" name="author" type="text" placeholder="昵称" value="" size="10">
                                 </p>
                                 <p class="comment-form-field comment-form-email">
