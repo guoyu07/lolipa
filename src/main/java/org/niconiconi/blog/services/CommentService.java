@@ -3,6 +3,9 @@ package org.niconiconi.blog.services;
 import org.niconiconi.blog.models.Comment;
 import org.niconiconi.blog.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +20,11 @@ public class CommentService {
     private CommentRepository commentRepository;
 
     public List<Comment> findCommentsByCid(Long cid) {
+        return commentRepository.findCommentsByCid(cid);
+    }
 
-        List<Comment> comments = commentRepository.findCommentsByCid(cid);
-        return comments;
+    public Page<Comment> findAllCommentsByPage(int pageNum, int pageSize) {
+        return commentRepository.findAll(
+                new PageRequest(pageNum, pageSize, Sort.Direction.DESC, "coid"));
     }
 }
