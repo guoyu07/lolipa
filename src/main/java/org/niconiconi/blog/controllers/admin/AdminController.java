@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
+
 /**
  * Created by Volio on 2016/9/8.
  */
@@ -25,11 +27,13 @@ public class AdminController {
     private CommentService commentService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getAdminPage(Model model) {
+    public String getAdminPage(Model model, Principal principal) {
         Page<Post> posts = postService.findAllPostByPage(0, 6);
         Page<Comment> comments = commentService.findAllCommentsByPage(0, 6);
+        String username = principal.getName();
         model.addAttribute("posts", posts);
         model.addAttribute("comments", comments);
+        model.addAttribute("username", username);
         return "admin/index";
     }
 }

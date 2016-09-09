@@ -1,0 +1,25 @@
+html, body {
+    font-family: 'Microsoft JhengHei', '微軟正黑體', 'Microsoft YaHei', '微软雅黑', Tahoma, Verdana, sans-serif;
+}
+
+.content {
+    width: 1160px;
+    margin: 0 auto;
+}
+
+.table-list {
+    padding-bottom: 2em;
+}
+
+.table-list h4 {
+    padding-bottom: 1em;
+}
+
+.footer {
+    padding: 2em;
+    text-align: center;
+}
+
+.table-list table tbody tr {
+    cursor: pointer;
+}

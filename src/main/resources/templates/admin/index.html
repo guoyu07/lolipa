@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>管理后台</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layouts/admin :: head(title='管理后台')">
 </head>
 <body>
-
+<div class="header" th:include="layouts/admin :: header(username=${username})"></div>
+<div class="content">
+    <div class="row">
+        <div class="col-md-3" th:include="layouts/admin :: row-left"></div>
+        <div class="col-md-8">
+            <div class="table-list">
+                <h4>最近发布的文章</h4>
+                <table class="table table-hover">
+                    <tbody>
+                    <tr th:each="post:${posts}">
+                        <td th:text="${#dates.format(post.createdAt,'M.d')}"></td>
+                        <td th:text="${post.title}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-list">
+                <h4>最近得到的回复</h4>
+                <table class="table table-hover">
+                    <tbody>
+                    <tr th:each="comment:${comments}">
+                        <td th:text="${#dates.format(comment.createdAt,'M.d')}"></td>
+                        <td th:text="${comment.author}"></td>
+                        <td th:text="${comment.text}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer" th:include="layouts/admin :: footer"></div>
 </body>
 </html>

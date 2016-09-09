@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:text="${title}+' - Volio\'s Blog'"></title>
+    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/resources/admin/style.css}" rel="stylesheet">
+    <meta name="robots" content="noindex, nofollow">
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
+</head>
+<body>
+<div class="header" th:fragment="header(username)">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">管理后台</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" th:text="${username}"></a></li>
+                <li><a th:href="@{/logout}">登出</a></li>
+                <li><a th:href="@{/}">网站</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="content">
+    <div class="row">
+        <div class="col-md-3" th:fragment="row-left">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation"><a href="#">网站概要</a></li>
+                <li role="presentation"><a href="#">文章管理</a></li>
+                <li role="presentation"><a href="#">评论管理</a></li>
+                <li role="presentation"><a href="#">撰写文章</a></li>
+            </ul>
+        </div>
+        <div class="col-md-8"></div>
+    </div>
+</div>
+<div class="footer" th:fragment="footer">
+    <footer>
+        <span>© 2016</span>&nbsp;<a title="Lolipa">Lolipa</a>
+    </footer>
+</div>
+</body>
+</html>
