@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layouts/admin :: head(title='撰写新文章')">
+</head>
+<body>
+<div class="header" th:include="layouts/admin :: header(username=${username})"></div>
+<div class="content">
+    <div class="row">
+        <div class="col-md-3" th:include="layouts/admin :: row-left"></div>
+        <div class="col-md-8">
+            <form role="form">
+                <div class="form-group">
+                    <label for="post-title"><h4>文章标题</h4></label>
+                    <input type="text" class="form-control" id="post-title" placeholder="Enter title">
+                </div>
+                <div class="form-group">
+                    <label for="post-url">Slug URL</label>
+                    <input type="text" class="input-sm form-control" id="post-url" placeholder="hello-world">
+                </div>
+                <div class="form-group">
+                    <label for="post-content"><h4>文章内容</h4></label>
+                    <textarea id="post-content" class="form-control" rows="16" placeholder="Enter content"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">发布新文章</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="footer" th:include="layouts/admin :: footer"></div>
+</body>
+</html>
