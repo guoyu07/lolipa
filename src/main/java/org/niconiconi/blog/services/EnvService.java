@@ -18,4 +18,8 @@ public class EnvService {
     public int getPageSize() {
         return env.getRequiredProperty("site.pagesize",Integer.class);
     }
+
+    public String getSiteName() {
+        return env.getRequiredProperty("site.name");
+    }
 }

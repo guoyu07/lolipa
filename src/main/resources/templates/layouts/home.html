@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" th:href="@{/resources/favicon.ico}">
-    <title th:if="${title}!=null" th:text="${title}+' - Volio\'s Blog'"></title>
-    <title th:if="${title}==null" th:text="'Volio\'s Blog'"></title>
+    <title th:if="${title}!=null" th:text="${title}+' - '+${@envService.getSiteName()}"></title>
+    <title th:if="${title}==null" th:text="${@envService.getSiteName()}"></title>
     <link rel="stylesheet" th:href="@{/resources/css/style.css}" type="text/css" media="screen"/>
     <link rel="stylesheet" th:href="@{/resources/css/font-awesome.min.css}" type="text/css" media="screen"/>
     <script type="text/javascript" th:src="@{/resources/js/jquery.min.js}"></script>
@@ -23,7 +23,7 @@
 <div class="main">
     <div class="header" th:fragment="nav-header">
         <div class="title">
-            <a th:href="@{/}">Volio's Blog</a>
+            <a th:href="@{/}" th:text="${@envService.getSiteName()}"></a>
         </div>
         <div class="navigation">
             <div class="left">
