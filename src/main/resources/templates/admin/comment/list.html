@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layouts/admin :: head(title='管理评论')">
+</head>
+<body>
+<div class="header" th:include="layouts/admin :: header(username=${username})"></div>
+<div class="content">
+    <div class="row">
+        <div class="col-md-3" th:include="layouts/admin :: row-left"></div>
+        <div class="col-md-8">
+            <div class="table-list">
+                <h4>管理评论</h4>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>作者</th>
+                        <th></th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="comment:${comments}">
+                        <td class="col-xs-1"><img class="avatar" th:src="${avatarMap.get(comment.coid)}" width="32" height="32"></td>
+                        <td class="col-xs-3">
+                            <div class="comment-meta">
+                                <strong th:text="${comment.author}"></strong><br>
+                                <span><a th:href="'mailto:'+${comment.mail}"
+                                         target="_blank">volio.liu@gmail.com</a></span><br>
+                                <span>222.168.40.60</span>
+                            </div>
+                        </td>
+                        <td class="col-xs-7">
+                            <div class="comment-body">
+                                <div class="comment-date">
+                                    <span th:text="${#dates.format(comment.createdAt,'M月d日')}"></span>
+                                </div>
+                                <div class="comment-content">
+                                    <p th:text="${comment.text}"></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-xs-1">
+                            <div class="comment-action">
+                                <a>通过</a><br><a>待审核</a><br><a>删除</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer" th:include="layouts/admin :: footer"></div>
+</body>
+</html>

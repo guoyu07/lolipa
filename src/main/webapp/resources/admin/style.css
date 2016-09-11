@@ -23,3 +23,15 @@ html, body {
 .table-list table tbody tr {
     cursor: pointer;
 }
+
+.comment-meta span {
+    font-size: .8em;
+}
+
+.comment-date {
+    padding-bottom: .4em;
+}
+
+.comment-date span {
+    font-size: .8em;
+}
