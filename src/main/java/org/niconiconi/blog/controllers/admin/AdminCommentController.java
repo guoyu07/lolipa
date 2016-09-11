@@ -28,12 +28,14 @@ public class AdminCommentController {
     @RequestMapping(method = RequestMethod.GET)
     public String getComments(@RequestParam(value = "page", defaultValue = "1") int pageNum, Model model, Principal principal) {
         pageNum = pageNum < 1 ? 0 : pageNum - 1;
-        Page<Comment> comments = commentService.findAllCommentsByPage(pageNum, 20);
+        Page<Comment> comments = commentService.findAllCommentsByPage(pageNum, 15);
         Map<Long, String> avatarMap = getAvatars(comments);
         String username = principal.getName();
         model.addAttribute("comments", comments);
         model.addAttribute("avatarMap", avatarMap);
         model.addAttribute("username", username);
+        model.addAttribute("allPageNum", comments.getTotalPages());
+        model.addAttribute("pageNum", pageNum + 1);
         return "admin/comment/list";
     }
 

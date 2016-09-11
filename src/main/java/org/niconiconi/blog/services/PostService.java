@@ -43,6 +43,14 @@ public class PostService {
         return post;
     }
 
+    public Post findPost(Long pid) {
+        Post post = postRepository.findPostById(pid);
+        if (post == null) {
+            throw new NotFoundException();
+        }
+        return post;
+    }
+
     public List<Post> searchPosts(String keyword) {
         List<Post> posts = postRepository.findPostsByContentContaining(keyword);
         for (Post post : posts) {

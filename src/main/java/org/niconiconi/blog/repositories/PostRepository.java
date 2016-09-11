@@ -16,6 +16,8 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Post findPostBySlug(String slug);
 
+    Post findPostById(Long pid);
+
     List<Post> findPostsByContentContaining(String keyword);
 
     Page<Post> findAll(Pageable pageable);

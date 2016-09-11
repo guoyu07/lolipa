@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-3" th:include="layouts/admin :: row-left"></div>
         <div class="col-md-8">
-            <form role="form">
+            <form role="form" th:if="${post}==null">
                 <div class="form-group">
                     <label for="post-title"><h4>文章标题</h4></label>
                     <input type="text" class="form-control" id="post-title" placeholder="Enter title">
@@ -21,7 +21,22 @@
                     <label for="post-content"><h4>文章内容</h4></label>
                     <textarea id="post-content" class="form-control" rows="16" placeholder="Enter content"></textarea>
                 </div>
-                <button type="submit" class="btn btn-default">发布新文章</button>
+                <button type="submit" class="btn btn-default">发布文章</button>
+            </form>
+            <form role="form" th:if="${post}!=null">
+                <div class="form-group">
+                    <label for="post-title"><h4>文章标题</h4></label>
+                    <input type="text" class="form-control" id="post-title" placeholder="Enter title" th:value="${post.title}">
+                </div>
+                <div class="form-group">
+                    <label for="post-url">Slug URL</label>
+                    <input type="text" class="input-sm form-control" id="post-url" placeholder="hello-world" th:value="${post.slug}">
+                </div>
+                <div class="form-group">
+                    <label for="post-content"><h4>文章内容</h4></label>
+                    <textarea id="post-content" class="form-control" rows="16" placeholder="Enter content" th:text="${post.content}"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">发布文章</button>
             </form>
         </div>
     </div>
