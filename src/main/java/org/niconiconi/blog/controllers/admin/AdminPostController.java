@@ -5,10 +5,12 @@ import org.niconiconi.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 /**
@@ -47,5 +49,14 @@ public class AdminPostController {
         model.addAttribute("post", post);
         model.addAttribute("username", username);
         return "admin/post/write";
+    }
+
+    @RequestMapping(value = "/write", method = RequestMethod.POST)
+    public String addPost(@Valid Post post, Errors errors) {
+        if (errors.hasErrors()) {
+            return "redirect:/admin/article/write";
+        }
+        postService.save(post);
+        return "redirect:/admin/article";
     }
 }

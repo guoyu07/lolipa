@@ -67,4 +67,8 @@ public class PostService {
         page.setContent(Markdown.markdownToHtml(page.getContent()));
         return page;
     }
+
+    public Post save(Post post) {
+        return postRepository.save(post);
+    }
 }

@@ -1,6 +1,7 @@
 package org.niconiconi.blog.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -15,12 +16,15 @@ public class Post {
     private Long id;
 
     @Column(name = "title", nullable = false, length = 200)
+    @NotNull
     private String title;
 
-    @Column(name = "slug", length = 200)
+    @Column(name = "slug", nullable = false, length = 200)
+    @NotNull
     private String slug;
 
     @Column(name = "content", nullable = false)
+    @NotNull
     private String content;
 
     @Column(name = "created_at", nullable = false)
