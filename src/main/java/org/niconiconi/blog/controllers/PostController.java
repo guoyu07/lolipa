@@ -30,7 +30,7 @@ public class PostController {
     @RequestMapping(value = "/{slug}", method = RequestMethod.GET)
     public String getPost(@PathVariable("slug") String slug, Model model) {
         Post post = postService.findPost(slug);
-        List<Comment> comments = commentService.findCommentsByCid(post.getId());
+        List<Comment> comments = commentService.findApprovedCommentsByCid(post.getId());
         List<Comment> avatarComments = getAvatarComments(comments);
         model.addAttribute("post", post);
         model.addAttribute("comments", avatarComments);

@@ -1,6 +1,11 @@
 package org.niconiconi.blog.models;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.URL;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -21,15 +26,17 @@ public class Comment {
     private Date createdAt;
 
     @Column(name = "author", nullable = false, length = 200)
+    @NotNull
+    @Size(max = 200)
     private String author;
 
-    @Column(name = "authorId")
-    private int authorId;
-
     @Column(name = "mail", nullable = false, length = 200)
+    @NotNull
+    @Email
     private String mail;
 
     @Column(name = "url", nullable = false, length = 200)
+    @URL
     private String url;
 
     @Column(name = "ip", nullable = false, length = 64)
@@ -39,6 +46,7 @@ public class Comment {
     private String agent;
 
     @Column(name = "text", nullable = false)
+    @NotNull
     private String text;
 
     @Column(name = "status", nullable = false, length = 16)
@@ -74,14 +82,6 @@ public class Comment {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
     }
 
     public String getMail() {

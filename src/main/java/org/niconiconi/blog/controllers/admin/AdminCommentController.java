@@ -39,6 +39,18 @@ public class AdminCommentController {
         return "admin/comment/list";
     }
 
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    public String deleteComment(@RequestParam(value = "coid") Long coid) {
+        commentService.delete(coid);
+        return "redirect:/admin/comment";
+    }
+
+    @RequestMapping(value = "/approve",method = RequestMethod.GET)
+    public String approveComment(@RequestParam(value = "coid") Long coid) {
+        commentService.approveComment(coid);
+        return "redirect:/admin/comment";
+    }
+
     private Map<Long, String> getAvatars(Iterable<Comment> comments) {
         Map<Long, String> avatarMap = new HashMap<>();
         for (Comment comment : comments) {

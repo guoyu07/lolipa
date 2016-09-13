@@ -2,8 +2,10 @@
 package org.niconiconi.blog.services;
 
 import org.niconiconi.blog.errors.NotFoundException;
+import org.niconiconi.blog.models.Comment;
 import org.niconiconi.blog.models.Page;
 import org.niconiconi.blog.models.Post;
+import org.niconiconi.blog.repositories.CommentRepository;
 import org.niconiconi.blog.repositories.PageRepository;
 import org.niconiconi.blog.repositories.PostRepository;
 import org.niconiconi.blog.utils.Markdown;
@@ -26,6 +28,9 @@ public class PostService {
 
     @Autowired
     private PageRepository pageRepository;
+
+    @Autowired
+    private CommentService commentService;
 
     public org.springframework.data.domain.Page<Post> findAllPostByPage(int pageNum, int pageSize) {
         org.springframework.data.domain.Page<Post> posts = postRepository.findAll(
@@ -87,6 +92,7 @@ public class PostService {
     }
 
     public void delete(Long id) {
+        commentService.deleteCommentsByCid(id);
         postRepository.delete(id);
     }
 }

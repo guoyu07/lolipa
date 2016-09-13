@@ -43,7 +43,9 @@
                         </td>
                         <td class="col-xs-1">
                             <div class="comment-action">
-                                <a>通过</a><br><a>待审核</a><br><a>删除</a>
+                                <a th:href="@{'/admin/comment/approve?coid='+${comment.coid}}">通过</a><br>
+                                <a>待审核</a><br>
+                                <a th:href="@{'/admin/comment/delete?coid='+${comment.coid}}">删除</a>
                             </div>
                         </td>
                     </tr>
