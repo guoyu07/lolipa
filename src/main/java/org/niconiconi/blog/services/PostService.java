@@ -2,10 +2,8 @@
 package org.niconiconi.blog.services;
 
 import org.niconiconi.blog.errors.NotFoundException;
-import org.niconiconi.blog.models.Comment;
 import org.niconiconi.blog.models.Page;
 import org.niconiconi.blog.models.Post;
-import org.niconiconi.blog.repositories.CommentRepository;
 import org.niconiconi.blog.repositories.PageRepository;
 import org.niconiconi.blog.repositories.PostRepository;
 import org.niconiconi.blog.utils.Markdown;
@@ -14,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,7 +74,7 @@ public class PostService {
     }
 
     public Post save(Post post) {
-        post.setCreatedAt(null);
+        post.setCreatedAt(new Date());
         return postRepository.save(post);
     }
 

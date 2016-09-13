@@ -10,7 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,7 +43,7 @@ public class CommentService {
     }
 
     public Comment save(Comment comment) {
-        comment.setCreatedAt(null);
+        comment.setCreatedAt(new Date());
         comment.setStatus("waiting");
         comment = commentRepository.save(comment);
         int count = commentRepository.countCommentsByCid(comment.getCid());
