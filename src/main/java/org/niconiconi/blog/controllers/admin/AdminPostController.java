@@ -59,4 +59,13 @@ public class AdminPostController {
         postService.save(post);
         return "redirect:/admin/article";
     }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String reEditPost(@Valid Post post, Errors errors) {
+        if (errors.hasErrors()) {
+            return "redirect:/admin/article/edit?pid=" + post.getId();
+        }
+        postService.update(post);
+        return "redirect:/admin/article";
+    }
 }
