@@ -32,7 +32,7 @@
                             <span class="dot"> - </span>
                             <span class="category">
                     <ul class="post-categories">
-                        <li><a href="https://niconiconi.org/category/study/">学习</a></li>
+                        <li><a href="#">默认分类</a></li>
                     </ul>
                     </span>
                             <span class="dot"> - </span>
@@ -51,7 +51,7 @@
                             <li class="write"><a class="reShow" onclick="showReplyForm()"><i
                                     class="fa fa-pencil-square-o"></i>发表评论</a></li>
                         </div>
-                        <div class="right"><a href="https://niconiconi.org/category/study/">学习</a></div>
+                        <div class="right"><a href="#">Tag</a></div>
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
                     //]]>
                 </script>
                 <ol class="comment-main">
-                    <ol class="comment-list">
+                    <ol class="comment-list" th:if="${post.commentNum}>0">
                         <li itemscope itemtype="http://schema.org/UserComments" th:each="comment:${comments}" th:id="'comment-'+${comment.coid}"
                             class="comment-body comment-parent comment-even">
                             <div class="comment-author" itemprop="creator" itemscope
@@ -94,6 +94,7 @@
                             </div>
                         </li>
                     </ol>
+                    <div class="none" th:if="${post.commentNum}==0">暂无评论，快来抢沙发吧！</div>
                 </ol>
                 <div class="respond-bk">
                     <div class="respond-main">

@@ -76,7 +76,7 @@ public class PostService {
     }
 
     public Post save(Post post) {
-        post.setCreatedAt(new Date(System.currentTimeMillis()));
+        post.setCreatedAt(null);
         return postRepository.save(post);
     }
 

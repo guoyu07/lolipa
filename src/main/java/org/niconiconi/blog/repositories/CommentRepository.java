@@ -19,6 +19,10 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
 
     Page<Comment> findAll(Pageable pageable);
 
+    List<Comment> findAllByStatus(String status);
+
+    int countCommentsByCid(Long cid);
+
     @Transactional
     Long deleteByCid(Long cid);
 }

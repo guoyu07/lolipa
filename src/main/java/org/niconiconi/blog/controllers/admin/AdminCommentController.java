@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,16 +40,29 @@ public class AdminCommentController {
         return "admin/comment/list";
     }
 
-    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    @RequestMapping(value = "waiting", method = RequestMethod.GET)
+    public String getComments(Model model, Principal principal) {
+        List<Comment> comments = commentService.findWaitingComments();
+        Map<Long, String> avatarMap = getAvatars(comments);
+        String username = principal.getName();
+        model.addAttribute("comments", comments);
+        model.addAttribute("avatarMap", avatarMap);
+        model.addAttribute("username", username);
+        model.addAttribute("allPageNum", 1);
+        model.addAttribute("pageNum", 1);
+        return "admin/comment/list";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteComment(@RequestParam(value = "coid") Long coid) {
         commentService.delete(coid);
         return "redirect:/admin/comment";
     }
 
-    @RequestMapping(value = "/approve",method = RequestMethod.GET)
+    @RequestMapping(value = "/approve", method = RequestMethod.GET)
     public String approveComment(@RequestParam(value = "coid") Long coid) {
         commentService.approveComment(coid);
-        return "redirect:/admin/comment";
+        return "redirect:/admin/comment/waiting";
     }
 
     private Map<Long, String> getAvatars(Iterable<Comment> comments) {
