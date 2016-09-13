@@ -77,9 +77,16 @@ public class PostService {
 
     public Post update(Post post) {
         Post sPost = postRepository.findPostById(post.getId());
+        if(sPost==null){
+            throw new NotFoundException();
+        }
         sPost.setTitle(post.getTitle());
         sPost.setSlug(post.getSlug());
         sPost.setContent(post.getContent());
         return postRepository.save(sPost);
+    }
+
+    public void delete(Long id) {
+        postRepository.delete(id);
     }
 }

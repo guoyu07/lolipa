@@ -68,4 +68,10 @@ public class AdminPostController {
         postService.update(post);
         return "redirect:/admin/article";
     }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deletePost(@RequestParam(value = "pid") Long pid) {
+        postService.delete(pid);
+        return "redirect:/admin/article";
+    }
 }

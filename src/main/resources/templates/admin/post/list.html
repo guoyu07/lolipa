@@ -17,12 +17,13 @@
                         <th>标题</th>
                         <th>分类</th>
                         <th>日期</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="post:${posts}">
                         <td class="col-xs-1" th:text="${post.id}+'.'"></td>
-                        <td class="col-xs-6">
+                        <td class="col-xs-5">
                             <a th:href="@{'/admin/article/edit?pid='+${post.id}}" th:text="${post.title}"></a>
                         </td>
                         <td class="col-xs-3">
@@ -30,6 +31,9 @@
                         </td>
                         <td class="col-xs-2">
                             <span th:text="${#dates.format(post.createdAt,'M月d日')}"></span>
+                        </td>
+                        <td class="col-xs-1">
+                            <a th:href="@{'/admin/article/delete?pid='+${post.id}}">删除</a>
                         </td>
                     </tr>
                     </tbody>
