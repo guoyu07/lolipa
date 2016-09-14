@@ -11,7 +11,7 @@ import java.util.Date;
 public class Page {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "title", nullable = false, length = 200)
