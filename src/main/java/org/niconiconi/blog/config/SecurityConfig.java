@@ -43,6 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         filter.setForceEncoding(true);
         http.addFilterBefore(filter,CsrfFilter.class);
 
+        http.csrf().ignoringAntMatchers("/api/**");
+
         http.authorizeRequests()
                 .antMatchers("/admin/**")
                 .hasAnyAuthority("ADMIN").anyRequest().permitAll().and()

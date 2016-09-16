@@ -1,9 +1,9 @@
 package org.niconiconi.blog.controllers.admin;
 
 import org.niconiconi.blog.models.Comment;
-import org.niconiconi.blog.models.Post;
+import org.niconiconi.blog.models.Article;
 import org.niconiconi.blog.services.CommentService;
-import org.niconiconi.blog.services.PostService;
+import org.niconiconi.blog.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -21,17 +21,17 @@ import java.security.Principal;
 public class AdminController {
 
     @Autowired
-    private PostService postService;
+    private ArticleService articleService;
 
     @Autowired
     private CommentService commentService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getAdminPage(Model model, Principal principal) {
-        Page<Post> posts = postService.findAllPostByPage(0, 6);
+        Page<Article> articles = articleService.findAllByPage(0, 6);
         Page<Comment> comments = commentService.findAllCommentsByPage(0, 6);
         String username = principal.getName();
-        model.addAttribute("posts", posts);
+        model.addAttribute("articles", articles);
         model.addAttribute("comments", comments);
         model.addAttribute("username", username);
         return "admin/index";

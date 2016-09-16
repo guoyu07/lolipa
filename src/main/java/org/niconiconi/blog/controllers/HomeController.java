@@ -1,14 +1,17 @@
 package org.niconiconi.blog.controllers;
 
 import org.niconiconi.blog.errors.NotFoundException;
+import org.niconiconi.blog.models.Article;
 import org.niconiconi.blog.models.Page;
-import org.niconiconi.blog.models.Post;
+import org.niconiconi.blog.services.ArticleService;
 import org.niconiconi.blog.services.EnvService;
-import org.niconiconi.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Objects;
@@ -21,7 +24,7 @@ import java.util.Objects;
 public class HomeController {
 
     @Autowired
-    private PostService postService;
+    private ArticleService articleService;
 
     @Autowired
     private EnvService envService;
@@ -45,20 +48,20 @@ public class HomeController {
     @RequestMapping(value = "/page/{pageNum}", method = RequestMethod.GET)
     public String getPagination(@PathVariable("pageNum") int pageNum, Model model) {
         pageNum = pageNum < 1 ? 0 : pageNum - 1;
-        org.springframework.data.domain.Page<Post> posts = postService.findAllPostByPage(pageNum, envService.getPageSize());
-        if (posts.getNumberOfElements() == 0) {
+        org.springframework.data.domain.Page<Article> articles = articleService.findAllByPage(pageNum, envService.getPageSize());
+        if (articles.getNumberOfElements() == 0) {
             throw new NotFoundException();
         }
-        model.addAttribute("allPageNum", posts.getTotalPages());
+        model.addAttribute("allPageNum", articles.getTotalPages());
         model.addAttribute("pageNum", pageNum + 1);
-        model.addAttribute("posts", posts);
+        model.addAttribute("articles", articles);
         return "home/index";
     }
 
     @RequestMapping(value = "/{slug}", method = RequestMethod.GET)
     public String getPage(@PathVariable("slug") String slug, Model model) {
-        Page page = postService.findPage(slug);
-        model.addAttribute("post", page);
-        return "post/page";
+        Page page = articleService.findPage(slug);
+        model.addAttribute("article", page);
+        return "article/page";
     }
 }

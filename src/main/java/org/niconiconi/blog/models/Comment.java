@@ -27,16 +27,18 @@ public class Comment {
 
     @Column(name = "author", nullable = false, length = 200)
     @NotNull
-    @Size(max = 200)
+    @Size(min = 2,max = 200)
     private String author;
 
     @Column(name = "mail", nullable = false, length = 200)
     @NotNull
     @Email
+    @Size(min = 2,max = 200)
     private String mail;
 
     @Column(name = "url", nullable = false, length = 200)
     @URL
+    @Size(min = 2,max = 200)
     private String url;
 
     @Column(name = "ip", nullable = false, length = 64)
@@ -47,6 +49,7 @@ public class Comment {
 
     @Column(name = "text", nullable = false)
     @NotNull
+    @Size(min = 2,max = 400)
     private String text;
 
     @Column(name = "status", nullable = false, length = 16)

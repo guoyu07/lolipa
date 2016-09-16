@@ -1,6 +1,6 @@
 package org.niconiconi.blog.repositories;
 
-import org.niconiconi.blog.models.Post;
+import org.niconiconi.blog.models.Article;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,18 +16,18 @@ import java.util.List;
  * Created by Volio on 2016/9/4.
  */
 @Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-    Post findPostBySlug(String slug);
+    Article findArticleBySlug(String slug);
 
-    Post findPostById(Long pid);
+    Article findArticleById(Long pid);
 
-    List<Post> findPostsByContentContaining(String keyword);
+    List<Article> findArticlesByContentContaining(String keyword);
 
-    Page<Post> findAll(Pageable pageable);
+    Page<Article> findAll(Pageable pageable);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Post p SET p.commentNum = :commentNum WHERE p.id = :cid")
+    @Query("UPDATE Article p SET p.commentNum = :commentNum WHERE p.id = :cid")
     void changeCommentNum(@Param("cid") Long cid, @Param("commentNum") int commentNum);
 }

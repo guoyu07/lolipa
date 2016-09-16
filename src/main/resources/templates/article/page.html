@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="layouts/home :: head(title=${post.title})">
+<head th:include="layouts/home :: head(title=${article.title})">
 </head>
 <body class="custom-background">
 <div class="main">
@@ -24,18 +24,17 @@
                 <div class="top">
                     <div class="title">
                         <a class="p-title" rel="bookmark">
-                            <i class="fa fa-file-text-o"></i><span th:text="${post.title}"></span></a>
+                            <i class="fa fa-file-text-o"></i><span th:text="${article.title}"></span></a>
                     </div>
                     <div class="info">
                         <div class="white">
-                            <span class="date" th:text="${#dates.format(post.createdAt,'yyyy/MM/dd')}"></span>
-                            <span class="dot"> - </span>
+                            <span class="date" th:text="${#dates.format(article.createdAt,'yyyy/MM/dd')}"></span>
                             <span class="dot"> - </span>
                             <span class="comment">暂无评论</span>
                         </div>
                     </div>
                 </div>
-                <div class="entry" th:utext="${post.content}"></div>
+                <div class="entry" th:utext="${article.content}"></div>
             </div>
             <div class="comments-wrapp">
                 <div class="topbar">

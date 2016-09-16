@@ -1,9 +1,9 @@
 package org.niconiconi.blog.controllers;
 
 import org.niconiconi.blog.models.Comment;
-import org.niconiconi.blog.models.Post;
+import org.niconiconi.blog.models.Article;
 import org.niconiconi.blog.services.CommentService;
-import org.niconiconi.blog.services.PostService;
+import org.niconiconi.blog.services.ArticleService;
 import org.niconiconi.blog.utils.Encode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,22 +19,22 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/archives")
-public class PostController {
+public class ArticleController {
 
     @Autowired
-    private PostService postService;
+    private ArticleService articleService;
 
     @Autowired
     private CommentService commentService;
 
     @RequestMapping(value = "/{slug}", method = RequestMethod.GET)
-    public String getPost(@PathVariable("slug") String slug, Model model) {
-        Post post = postService.findPost(slug);
-        List<Comment> comments = commentService.findApprovedCommentsByCid(post.getId());
+    public String getArticle(@PathVariable("slug") String slug, Model model) {
+        Article article = articleService.findArticle(slug);
+        List<Comment> comments = commentService.findApprovedCommentsByCid(article.getId());
         List<Comment> avatarComments = getAvatarComments(comments);
-        model.addAttribute("post", post);
+        model.addAttribute("article", article);
         model.addAttribute("comments", avatarComments);
-        return "post/index";
+        return "article/index";
     }
 
     private List<Comment> getAvatarComments(List<Comment> comments) {

@@ -21,19 +21,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="post:${posts}">
-                        <td class="col-xs-1" th:text="${post.id}+'.'"></td>
+                    <tr th:each="article:${articles}">
+                        <td class="col-xs-1" th:text="${article.id}+'.'"></td>
                         <td class="col-xs-5">
-                            <a th:href="@{'/admin/article/edit?pid='+${post.id}}" th:text="${post.title}"></a>
+                            <a th:href="@{'/admin/article/edit?pid='+${article.id}}" th:text="${article.title}"></a>
                         </td>
                         <td class="col-xs-3">
                             <span>默认分类</span>
                         </td>
                         <td class="col-xs-2">
-                            <span th:text="${#dates.format(post.createdAt,'M月d日')}"></span>
+                            <span th:text="${#dates.format(article.createdAt,'M月d日')}"></span>
                         </td>
                         <td class="col-xs-1">
-                            <a th:href="@{'/admin/article/delete?pid='+${post.id}}">删除</a>
+                            <a th:href="@{'/admin/article/delete?pid='+${article.id}}">删除</a>
                         </td>
                     </tr>
                     </tbody>

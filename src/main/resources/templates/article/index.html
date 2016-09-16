@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="layouts/home :: head(title=${post.title})">
+<head th:include="layouts/home :: head(title=${article.title})">
 </head>
 <body class="custom-background">
 <div class="main">
@@ -24,30 +24,30 @@
                 <div class="top">
                     <div class="title">
                         <a class="p-title" rel="bookmark">
-                            <i class="fa fa-file-text-o"></i><span th:text="${post.title}"></span></a>
+                            <i class="fa fa-file-text-o"></i><span th:text="${article.title}"></span></a>
                     </div>
                     <div class="info">
                         <div class="white">
-                            <span class="date" th:text="${#dates.format(post.createdAt,'yyyy/MM/dd')}"></span>
+                            <span class="date" th:text="${#dates.format(article.createdAt,'yyyy/MM/dd')}"></span>
                             <span class="dot"> - </span>
                             <span class="category">
-                    <ul class="post-categories">
+                    <ul class="article-categories">
                         <li><a href="#">默认分类</a></li>
                     </ul>
                     </span>
                             <span class="dot"> - </span>
                             <span class="comment"
-                                  th:text="${post.commentNum==0}?${'暂无评论'}:${post.commentNum+' 条评论'}"></span>
+                                  th:text="${article.commentNum==0}?${'暂无评论'}:${article.commentNum+' 条评论'}"></span>
                         </div>
                     </div>
                 </div>
-                <div class="entry" th:utext="${post.content}"></div>
+                <div class="entry" th:utext="${article.content}"></div>
             </div>
             <div class="comments-wrapp">
                 <div class="topbar">
                     <div class="wrapp">
                         <div class="left">
-                            <li class="num"><a th:text="${'评论 &#x28;'+post.commentNum+' 条&#x29;'}"></a></li>
+                            <li class="num"><a th:text="${'评论 &#x28;'+article.commentNum+' 条&#x29;'}"></a></li>
                             <li class="write"><a class="reShow" onclick="showReplyForm()"><i
                                     class="fa fa-pencil-square-o"></i>发表评论</a></li>
                         </div>
@@ -69,7 +69,7 @@
                     //]]>
                 </script>
                 <ol class="comment-main">
-                    <ol class="comment-list" th:if="${post.commentNum}>0">
+                    <ol class="comment-list" th:if="${article.commentNum}>0">
                         <li itemscope itemtype="http://schema.org/UserComments" th:each="comment:${comments}" th:id="'comment-'+${comment.coid}"
                             class="comment-body comment-parent comment-even">
                             <div class="comment-author" itemprop="creator" itemscope
@@ -94,7 +94,7 @@
                             </div>
                         </li>
                     </ol>
-                    <div class="none" th:if="${post.commentNum}==0">暂无评论，快来抢沙发吧！</div>
+                    <div class="none" th:if="${article.commentNum}==0">暂无评论，快来抢沙发吧！</div>
                 </ol>
                 <div class="respond-bk">
                     <div class="respond-main">
@@ -186,12 +186,12 @@
                                 <a class="faceCloseLnk" onclick="closeFaceSelect()">关闭</a>
                             </div>
                         </div>
-                        <div id="response-post" class="comment-respond">
+                        <div id="response-article" class="comment-respond">
                             <h3 id="reply-title" class="comment-reply-title">发表评论</h3>
-                            <form th:action="@{/article/comment}" method="post"
+                            <form th:action="@{/article/comment}" method="article"
                                   id="comment-form" class="comment-form">
                                 <p class="comment-form-field comment-form-author">
-                                    <input name="cid" th:value="${post.id}" type="hidden">
+                                    <input name="cid" th:value="${article.id}" type="hidden">
                                     <input id="author" name="author" type="text" placeholder="昵称" value="" size="10">
                                 </p>
                                 <p class="comment-form-field comment-form-email">

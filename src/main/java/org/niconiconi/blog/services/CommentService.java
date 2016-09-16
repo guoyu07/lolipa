@@ -3,7 +3,7 @@ package org.niconiconi.blog.services;
 import org.niconiconi.blog.errors.NotFoundException;
 import org.niconiconi.blog.models.Comment;
 import org.niconiconi.blog.repositories.CommentRepository;
-import org.niconiconi.blog.repositories.PostRepository;
+import org.niconiconi.blog.repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,18 +23,18 @@ public class CommentService {
     private CommentRepository commentRepository;
 
     @Autowired
-    private PostRepository postRepository;
+    private ArticleRepository articleRepository;
 
     public List<Comment> findCommentsByCid(Long cid) {
         return commentRepository.findCommentsByCid(cid);
     }
 
     public List<Comment> findApprovedCommentsByCid(Long cid) {
-        return commentRepository.findCommentsByCidAndStatus(cid, "approved");
+        return commentRepository.findCommentsByCidAndStatusOrderByCoidDesc(cid, "approved");
     }
 
     public List<Comment> findWaitingComments() {
-        return commentRepository.findAllByStatus("waiting");
+        return commentRepository.findAllByStatusOrderByCoidDesc("waiting");
     }
 
     public Page<Comment> findAllCommentsByPage(int pageNum, int pageSize) {
@@ -47,7 +47,7 @@ public class CommentService {
         comment.setStatus("waiting");
         comment = commentRepository.save(comment);
         int count = commentRepository.countCommentsByCid(comment.getCid());
-        postRepository.changeCommentNum(comment.getCid(),count);
+        articleRepository.changeCommentNum(comment.getCid(),count);
         return comment;
     }
 
@@ -55,7 +55,7 @@ public class CommentService {
         Comment comment = commentRepository.findOne(id);
         commentRepository.delete(comment);
         int count = commentRepository.countCommentsByCid(comment.getCid());
-        postRepository.changeCommentNum(comment.getCid(),count);
+        articleRepository.changeCommentNum(comment.getCid(),count);
     }
 
     public void deleteCommentsByCid(Long cid) {

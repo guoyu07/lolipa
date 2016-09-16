@@ -9,32 +9,32 @@
 
     <div class="content">
         <div class="wrapp">
-            <div class="post" th:each="post : ${posts}">
+            <div class="post" th:each="article : ${articles}">
                 <div class="top">
                     <div class="title">
                         <a class="p-title" rel="bookmark"
-                           th:href="${'/archives/'+post.slug}"><i class="fa fa-file-text-o"></i><span
-                                th:text="${post.title}"></span></a>
+                           th:href="${'/archives/'+article.slug}"><i class="fa fa-file-text-o"></i><span
+                                th:text="${article.title}"></span></a>
                     </div>
                     <div class="info">
                         <div class="white">
-                            <span class="date" th:text="${#dates.format(post.createdAt,'yyyy/MM/dd')}"></span>
+                            <span class="date" th:text="${#dates.format(article.createdAt,'yyyy/MM/dd')}"></span>
                             <span class="dot"> - </span>
                             <span class="category">
-                            <ul class="post-categories">
+                            <ul class="article-categories">
                                 <li><a href="https://niconiconi.org/category/study/">学习</a></li>
                             </ul>
                             </span>
                             <span class="dot"> - </span>
                             <span class="comment"
-                                  th:text="${post.commentNum==0}?${'暂无评论'}:${post.commentNum+' 条评论'}"></span>
+                                  th:text="${article.commentNum==0}?${'暂无评论'}:${article.commentNum+' 条评论'}"></span>
                         </div>
                     </div>
                 </div>
-                <div class="entry" th:utext="${post.content}">Content</div>
+                <div class="entry" th:utext="${article.content}">Content</div>
                 <div class="bottom">
                     <div class="left">
-                        <a class="more ripple" th:href="${'/archives/'+post.slug}"><i
+                        <a class="more ripple" th:href="${'/archives/'+article.slug}"><i
                                 class="fa fa-caret-square-o-right"></i>阅读全文</a>
                     </div>
                     <div class="right">

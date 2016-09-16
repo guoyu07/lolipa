@@ -1,7 +1,7 @@
 package org.niconiconi.blog.controllers.admin;
 
-import org.niconiconi.blog.models.Post;
-import org.niconiconi.blog.services.PostService;
+import org.niconiconi.blog.models.Article;
+import org.niconiconi.blog.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,60 +18,60 @@ import java.security.Principal;
  */
 @Controller
 @RequestMapping("/admin/article")
-public class AdminPostController {
+public class AdminArticleController {
 
     @Autowired
-    private PostService postService;
+    private ArticleService articleService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getPosts(@RequestParam(value = "page", defaultValue = "1") int pageNum, Model model, Principal principal) {
         pageNum = pageNum < 1 ? 0 : pageNum - 1;
-        org.springframework.data.domain.Page<Post> posts = postService.findAllPostByPage(pageNum, 15);
+        org.springframework.data.domain.Page<Article> articles = articleService.findAllByPage(pageNum, 15);
         String username = principal.getName();
-        model.addAttribute("posts", posts);
+        model.addAttribute("articles", articles);
         model.addAttribute("username", username);
-        model.addAttribute("allPageNum", posts.getTotalPages());
+        model.addAttribute("allPageNum", articles.getTotalPages());
         model.addAttribute("pageNum", pageNum + 1);
-        return "admin/post/list";
+        return "admin/article/list";
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.GET)
     public String getNewPost(Model model, Principal principal) {
         String username = principal.getName();
         model.addAttribute("username", username);
-        return "admin/post/write";
+        return "admin/article/write";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String editPost(@RequestParam(value = "pid") Long pid, Model model, Principal principal) {
-        Post post = postService.findPost(pid);
+        Article article = articleService.findArticle(pid);
         String username = principal.getName();
-        model.addAttribute("post", post);
+        model.addAttribute("article", article);
         model.addAttribute("username", username);
-        return "admin/post/write";
+        return "admin/article/write";
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.POST)
-    public String addPost(@Valid Post post, Errors errors) {
+    public String addPost(@Valid Article article, Errors errors) {
         if (errors.hasErrors()) {
             return "redirect:/admin/article/write";
         }
-        postService.save(post);
+        articleService.save(article);
         return "redirect:/admin/article";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String reEditPost(@Valid Post post, Errors errors) {
+    public String reEditPost(@Valid Article article, Errors errors) {
         if (errors.hasErrors()) {
-            return "redirect:/admin/article/edit?pid=" + post.getId();
+            return "redirect:/admin/article/edit?pid=" + article.getId();
         }
-        postService.update(post);
+        articleService.update(article);
         return "redirect:/admin/article";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deletePost(@RequestParam(value = "pid") Long pid) {
-        postService.delete(pid);
+        articleService.delete(pid);
         return "redirect:/admin/article";
     }
 }

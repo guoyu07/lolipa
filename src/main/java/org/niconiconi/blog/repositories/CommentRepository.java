@@ -15,11 +15,11 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
 
     List<Comment> findCommentsByCid(Long cid);
 
-    List<Comment> findCommentsByCidAndStatus(Long cid,String status);
+    List<Comment> findCommentsByCidAndStatusOrderByCoidDesc(Long cid,String status);
 
     Page<Comment> findAll(Pageable pageable);
 
-    List<Comment> findAllByStatus(String status);
+    List<Comment> findAllByStatusOrderByCoidDesc(String status);
 
     int countCommentsByCid(Long cid);
 

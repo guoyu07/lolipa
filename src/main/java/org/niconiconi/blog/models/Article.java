@@ -8,8 +8,8 @@ import java.util.Date;
  * Created by Volio on 2016/9/4.
  */
 @Entity
-@Table(name = "posts")
-public class Post {
+@Table(name = "articles")
+public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

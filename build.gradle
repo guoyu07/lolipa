@@ -49,6 +49,10 @@ dependencies {
     //markdown
     compile 'org.pegdown:pegdown:1.6.0'
 
+    //json
+    compile 'com.fasterxml.jackson.core:jackson-core:2.8.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.2'
+
     //test
     testCompile 'junit:junit:4.11'
     testCompile 'org.springframework:spring-test:+'
