@@ -18,8 +18,6 @@ import java.util.List;
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-    Article findArticleBySlug(String slug);
-
     Article findArticleById(Long pid);
 
     List<Article> findArticlesByContentContaining(String keyword);

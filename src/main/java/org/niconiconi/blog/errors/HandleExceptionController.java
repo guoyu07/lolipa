@@ -14,7 +14,7 @@ public class HandleExceptionController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
-    public String NotFoundPage() {
-        return "errors/404";
+    public void NotFoundPage() {
+
     }
 }

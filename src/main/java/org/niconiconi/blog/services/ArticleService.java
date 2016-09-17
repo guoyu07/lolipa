@@ -39,15 +39,6 @@ public class ArticleService {
         return articles;
     }
 
-    public Article findArticle(String slug) {
-        Article article = articleRepository.findArticleBySlug(slug);
-        if (article == null) {
-            throw new NotFoundException();
-        }
-        article.setContent(Markdown.markdownToHtml(article.getContent()));
-        return article;
-    }
-
     public Article findArticle(Long pid) {
         Article article = articleRepository.findArticleById(pid);
         if (article == null) {
