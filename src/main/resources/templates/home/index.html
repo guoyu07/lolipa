@@ -13,7 +13,7 @@
                 <div class="top">
                     <div class="title">
                         <a class="p-title" rel="bookmark"
-                           th:href="${'/archives/'+article.slug}"><i class="fa fa-file-text-o"></i><span
+                           th:href="@{'/archives/'+${article.slug}}"><i class="fa fa-file-text-o"></i><span
                                 th:text="${article.title}"></span></a>
                     </div>
                     <div class="info">
@@ -34,7 +34,7 @@
                 <div class="entry" th:utext="${article.content}">Content</div>
                 <div class="bottom">
                     <div class="left">
-                        <a class="more ripple" th:href="${'/archives/'+article.slug}"><i
+                        <a class="more ripple" th:href="@{'/archives/'+${article.slug}}"><i
                                 class="fa fa-caret-square-o-right"></i>阅读全文</a>
                     </div>
                     <div class="right">

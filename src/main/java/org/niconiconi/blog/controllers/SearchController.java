@@ -26,7 +26,7 @@ public class SearchController {
         if (articles.isEmpty()) {
             return "errors/404";
         } else {
-            model.addAttribute("posts", articles);
+            model.addAttribute("articles", articles);
             return "home/search";
         }
     }

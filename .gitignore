@@ -3,6 +3,7 @@
 .gradle
 .idea
 build/
+env.properties
 
 # Ignore Gradle GUI config
 gradle-app.setting

@@ -57,3 +57,7 @@ dependencies {
     testCompile 'junit:junit:4.11'
     testCompile 'org.springframework:spring-test:+'
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}

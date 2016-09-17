@@ -14,8 +14,7 @@ public class HandleExceptionController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
-    public String NotFoundPage(Model model) {
-        model.addAttribute("title", "页面未找到");
+    public String NotFoundPage() {
         return "errors/404";
     }
 }
