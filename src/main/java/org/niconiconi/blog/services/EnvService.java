@@ -14,12 +14,4 @@ public class EnvService {
 
     @Autowired
     Environment env;
-
-    public int getPageSize() {
-        return env.getRequiredProperty("site.pagesize",Integer.class);
-    }
-
-    public String getSiteName() {
-        return env.getRequiredProperty("site.name");
-    }
 }

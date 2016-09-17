@@ -14,24 +14,16 @@
                     <input type="text" name="title" class="form-control" id="article-title" placeholder="Enter title" required>
                 </div>
                 <div class="form-group">
-                    <label for="article-url">Slug URL</label>
-                    <input type="text" name="slug" class="input-sm form-control" id="article-url" placeholder="hello-world" required>
-                </div>
-                <div class="form-group">
                     <label for="article-content"><h4>文章内容</h4></label>
                     <textarea name="content" id="article-content" class="form-control" rows="16" placeholder="Enter content" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-default">发布文章</button>
             </form>
-            <form role="form" th:if="${article}!=null" th:action="@{/admin/article/edit}" method="article">
+            <form role="form" th:if="${article}!=null" th:action="@{/admin/article/edit}" method="post">
                 <input type="hidden" name="id" th:value="${article.id}">
                 <div class="form-group">
                     <label for="article-title"><h4>文章标题</h4></label>
                     <input type="text" name="title" class="form-control" id="article-title" placeholder="Enter title" th:value="${article.title}">
-                </div>
-                <div class="form-group">
-                    <label for="article-url">Slug URL</label>
-                    <input type="text" name="slug" class="input-sm form-control" id="article-url" placeholder="hello-world" th:value="${article.slug}">
                 </div>
                 <div class="form-group">
                     <label for="article-content"><h4>文章内容</h4></label>

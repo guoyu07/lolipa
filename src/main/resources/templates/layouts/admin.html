@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
-    <title th:text="${title}+' - '+${@envService.getSiteName()}"></title>
+    <title th:text="${title}"></title>
     <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link th:href="@{/resources/admin/style.css}" rel="stylesheet">
     <meta name="robots" content="noindex, nofollow">

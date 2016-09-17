@@ -44,6 +44,11 @@ public class ArticleService {
         if (article == null) {
             throw new NotFoundException();
         }
+        return article;
+    }
+
+    public Article findHtmlArticle(Long pid) {
+        Article article = findArticle(pid);
         article.setContent(Markdown.markdownToHtml(article.getContent()));
         return article;
     }
@@ -76,7 +81,6 @@ public class ArticleService {
             throw new NotFoundException();
         }
         sArticle.setTitle(article.getTitle());
-        sArticle.setSlug(article.getSlug());
         sArticle.setContent(article.getContent());
         return articleRepository.save(sArticle);
     }

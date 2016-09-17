@@ -19,10 +19,6 @@ public class Article {
     @NotNull
     private String title;
 
-    @Column(name = "slug", nullable = false, length = 200)
-    @NotNull
-    private String slug;
-
     @Column(name = "content", nullable = false)
     @NotNull
     private String content;
@@ -40,14 +36,6 @@ public class Article {
 
     public void setCommentNum(int commentNum) {
         this.commentNum = commentNum;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
     }
 
     public Date getCreatedAt() {

@@ -5,8 +5,6 @@ import org.niconiconi.blog.services.CommentService;
 import org.niconiconi.blog.utils.Encode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

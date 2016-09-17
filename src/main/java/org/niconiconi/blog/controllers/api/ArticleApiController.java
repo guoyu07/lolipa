@@ -34,7 +34,7 @@ public class ArticleApiController {
 
     @RequestMapping(value = "/{pid}", method = RequestMethod.GET)
     public Article getArticle(@PathVariable("pid") Long pid) {
-        return articleService.findArticle(pid);
+        return articleService.findHtmlArticle(pid);
     }
 
     @RequestMapping(value = "/{pid}/comments",method = RequestMethod.GET)
