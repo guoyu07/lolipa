@@ -45,7 +45,7 @@
                             <div class="comment-action">
                                 <a th:href="@{'/admin/comment/approve?coid='+${comment.coid}}">通过</a><br>
                                 <a>待审核</a><br>
-                                <a th:href="@{'/admin/comment/delete?coid='+${comment.coid}}">删除</a>
+                                <a th:onclick="'deleteComment('+${comment.coid}+')'">删除</a>
                             </div>
                         </td>
                     </tr>
@@ -64,5 +64,6 @@
     </div>
 </div>
 <div class="footer" th:include="layouts/admin :: footer"></div>
+<script th:src="@{/resources/js/index.js}"></script>
 </body>
 </html>

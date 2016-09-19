@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,43 +17,39 @@ import java.util.Map;
  * Created by Volio on 2016/9/11.
  */
 @Controller
-@RequestMapping("/admin/comment")
+@RequestMapping("/admin/comments")
 public class AdminCommentController {
 
     @Autowired
     private CommentService commentService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getComments(@RequestParam(value = "page", defaultValue = "1") int pageNum, Model model, Principal principal) {
+    public String getComments(@RequestParam(value = "page", defaultValue = "1") int pageNum, Model model) {
         pageNum = pageNum < 1 ? 0 : pageNum - 1;
-        Page<Comment> comments = commentService.findAllCommentsByPage(pageNum, 15);
+        Page<Comment> comments = commentService.findAllCommentsByPage(pageNum, 10);
         Map<Long, String> avatarMap = getAvatars(comments);
-        String username = principal.getName();
         model.addAttribute("comments", comments);
         model.addAttribute("avatarMap", avatarMap);
-        model.addAttribute("username", username);
         model.addAttribute("allPageNum", comments.getTotalPages());
         model.addAttribute("pageNum", pageNum + 1);
         return "admin/comment/list";
     }
 
     @RequestMapping(value = "waiting", method = RequestMethod.GET)
-    public String getComments(Model model, Principal principal) {
+    public String getComments(Model model) {
         List<Comment> comments = commentService.findWaitingComments();
         Map<Long, String> avatarMap = getAvatars(comments);
-        String username = principal.getName();
         model.addAttribute("comments", comments);
         model.addAttribute("avatarMap", avatarMap);
-        model.addAttribute("username", username);
         model.addAttribute("allPageNum", 1);
         model.addAttribute("pageNum", 1);
         return "admin/comment/list";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteComment(@RequestParam(value = "coid") Long coid) {
+    @RequestMapping(value = "/{coid}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteComment(@PathVariable("coid") Long coid) {
         commentService.delete(coid);
-        return "redirect:/admin/comment";
     }
 
     @RequestMapping(value = "/approve", method = RequestMethod.GET)

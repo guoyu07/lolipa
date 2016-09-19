@@ -6,53 +6,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 /**
  * Created by Volio on 2016/9/10.
  */
 @Controller
-@RequestMapping("/admin/article")
+@RequestMapping("/admin/articles")
 public class AdminArticleController {
 
     @Autowired
     private ArticleService articleService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getPosts(@RequestParam(value = "page", defaultValue = "1") int pageNum, Model model, Principal principal) {
+    public String getArticles(@RequestParam(value = "page", defaultValue = "1") int pageNum, Model model) {
         pageNum = pageNum < 1 ? 0 : pageNum - 1;
-        org.springframework.data.domain.Page<Article> articles = articleService.findAllByPage(pageNum, 15);
-        String username = principal.getName();
+        org.springframework.data.domain.Page<Article> articles = articleService.findAllByPage(pageNum, 10);
         model.addAttribute("articles", articles);
-        model.addAttribute("username", username);
         model.addAttribute("allPageNum", articles.getTotalPages());
         model.addAttribute("pageNum", pageNum + 1);
         return "admin/article/list";
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.GET)
-    public String getNewPost(Model model, Principal principal) {
-        String username = principal.getName();
-        model.addAttribute("username", username);
+    public String getNewArticle() {
         return "admin/article/write";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String editPost(@RequestParam(value = "pid") Long pid, Model model, Principal principal) {
+    @RequestMapping(value = "/{pid}", method = RequestMethod.GET)
+    public String editArticle(@PathVariable("pid") Long pid, Model model) {
         Article article = articleService.findArticle(pid);
-        String username = principal.getName();
         model.addAttribute("article", article);
-        model.addAttribute("username", username);
         return "admin/article/write";
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.POST)
-    public String addPost(@Valid Article article, Errors errors) {
+    public String addArticle(@Valid Article article, Errors errors) {
         if (errors.hasErrors()) {
             return "redirect:/admin/article/write";
         }
@@ -61,7 +52,7 @@ public class AdminArticleController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String reEditPost(@Valid Article article, Errors errors) {
+    public String reEditArticle(@Valid Article article, Errors errors) {
         if (errors.hasErrors()) {
             return "redirect:/admin/article/edit?pid=" + article.getId();
         }
@@ -69,9 +60,9 @@ public class AdminArticleController {
         return "redirect:/admin/article";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deletePost(@RequestParam(value = "pid") Long pid) {
+    @RequestMapping(value = "/{pid}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteArticle(@PathVariable("pid") Long pid) {
         articleService.delete(pid);
-        return "redirect:/admin/article";
     }
 }

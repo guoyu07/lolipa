@@ -24,7 +24,7 @@
                     <tr th:each="article:${articles}">
                         <td class="col-xs-1" th:text="${article.id}+'.'"></td>
                         <td class="col-xs-5">
-                            <a th:href="@{'/admin/article/edit?pid='+${article.id}}" th:text="${article.title}"></a>
+                            <a th:href="@{'/admin/articles/'+${article.id}}" th:text="${article.title}"></a>
                         </td>
                         <td class="col-xs-3">
                             <span>默认分类</span>
@@ -33,7 +33,7 @@
                             <span th:text="${#dates.format(article.createdAt,'M月d日')}"></span>
                         </td>
                         <td class="col-xs-1">
-                            <a th:href="@{'/admin/article/delete?pid='+${article.id}}">删除</a>
+                            <a th:onclick="'deleteArticle('+${article.id}+')'">删除</a>
                         </td>
                     </tr>
                     </tbody>
@@ -51,5 +51,6 @@
     </div>
 </div>
 <div class="footer" th:include="layouts/admin :: footer"></div>
+<script th:src="@{/resources/js/index.js}"></script>
 </body>
 </html>
