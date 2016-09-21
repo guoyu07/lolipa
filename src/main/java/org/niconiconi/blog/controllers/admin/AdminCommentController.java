@@ -52,10 +52,10 @@ public class AdminCommentController {
         commentService.delete(coid);
     }
 
-    @RequestMapping(value = "/approve", method = RequestMethod.GET)
-    public String approveComment(@RequestParam(value = "coid") Long coid) {
-        commentService.approveComment(coid);
-        return "redirect:/admin/comment/waiting";
+    @RequestMapping(value = "/{coid}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Comment approveComment(@PathVariable("coid") Long coid) {
+        return commentService.approveComment(coid);
     }
 
     private Map<Long, String> getAvatars(Iterable<Comment> comments) {

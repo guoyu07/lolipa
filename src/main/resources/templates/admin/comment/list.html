@@ -43,7 +43,7 @@
                         </td>
                         <td class="col-xs-1">
                             <div class="comment-action">
-                                <a th:href="@{'/admin/comment/approve?coid='+${comment.coid}}">通过</a><br>
+                                <a th:onclick="'approveComment('+${comment.coid}+')'">通过</a><br>
                                 <a>待审核</a><br>
                                 <a th:onclick="'deleteComment('+${comment.coid}+')'">删除</a>
                             </div>
@@ -54,9 +54,9 @@
                 <nav>
                     <ul class="pager">
                         <li class="previous" th:if="${pageNum>1}"><a
-                                th:href="@{'/admin/comment?page='+${pageNum-1}}">&larr; 上一页</a></li>
+                                th:href="@{'/admin/comments?page='+${pageNum-1}}">&larr; 上一页</a></li>
                         <li class="next" th:if="${pageNum<allPageNum}"><a
-                                th:href="@{'/admin/comment?page='+${pageNum+1}}">下一页 &rarr;</a></li>
+                                th:href="@{'/admin/comments?page='+${pageNum+1}}">下一页 &rarr;</a></li>
                     </ul>
                 </nav>
             </div>
