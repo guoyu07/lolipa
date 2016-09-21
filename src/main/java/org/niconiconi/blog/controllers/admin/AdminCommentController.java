@@ -35,8 +35,8 @@ public class AdminCommentController {
         return "admin/comment/list";
     }
 
-    @RequestMapping(value = "waiting", method = RequestMethod.GET)
-    public String getComments(Model model) {
+    @RequestMapping(value = "approve", method = RequestMethod.GET)
+    public String getUnApproveComments(Model model) {
         List<Comment> comments = commentService.findWaitingComments();
         Map<Long, String> avatarMap = getAvatars(comments);
         model.addAttribute("comments", comments);
