@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layouts/admin :: head(title='管理后台')">
+</head>
+<body>
+<div class="header" th:include="layouts/admin :: header(username=${username})"></div>
+<div class="content">
+    <div class="row">
+        <div class="col-md-3" th:include="layouts/admin :: row-left"></div>
+        <div class="col-md-8">
+            个人资料
+        </div>
+    </div>
+</div>
+<div class="footer" th:include="layouts/admin :: footer"></div>
+</body>
+</html>
