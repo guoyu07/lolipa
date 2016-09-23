@@ -6,6 +6,8 @@ import org.niconiconi.blog.repositories.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Volio on 2016/9/23.
  */
@@ -21,6 +23,10 @@ public class PageService {
             throw new NotFoundException();
         }
         return page;
+    }
+
+    public List<Page> findAll() {
+        return pageRepository.findAll();
     }
 
     public Page update(Page page) {

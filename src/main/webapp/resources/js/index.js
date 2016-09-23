@@ -97,3 +97,24 @@ function editPage(pageSlug) {
         }
     })
 }
+
+function updateProfile() {
+    var data = {}
+    $("#setting-profile").serializeArray().map(function (kv) {
+        data[kv.name] = kv.value;
+    })
+    var json = JSON.stringify(data)
+    $.ajax({
+        url: '/admin/settings/profile',
+        type: 'PUT',
+        data: json,
+        contentType: "application/json",
+        success: function () {
+            alert('修改成功，下次登录后生效')
+            location.reload()
+        },
+        error: function () {
+            alert('提交失败，请检查参数')
+        }
+    })
+}
