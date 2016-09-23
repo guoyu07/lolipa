@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="layouts/admin :: head(title='管理后台')">
+<head th:include="layouts/admin :: head(title='个人设置')">
 </head>
 <body>
-<div class="header" th:include="layouts/admin :: header(username=${username})"></div>
+<div class="header" th:include="layouts/admin :: header"></div>
 <div class="content">
     <div class="row">
         <div class="col-md-3" th:include="layouts/admin :: row-left"></div>
         <div class="col-md-8">
-            个人资料
+            <form role="form" method="post">
+                <div class="form-group">
+                    <label for="setting-username"><h4>用户名</h4></label>
+                    <input type="text" name="username" class="form-control" id="setting-username" placeholder="用户名" required>
+                </div>
+                <div class="form-group">
+                    <label for="setting-password"><h4>密码</h4></label>
+                    <input type="password" name="password" class="form-control" id="setting-password" placeholder="留空则不修改">
+                </div>
+                <button type="submit" class="btn btn-default">保存设置</button>
+            </form>
         </div>
     </div>
 </div>
