@@ -2,6 +2,7 @@ package org.niconiconi.blog.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -17,6 +18,7 @@ public class Article {
 
     @Column(name = "title", nullable = false, length = 200)
     @NotNull
+    @Size(min = 1,max = 200)
     private String title;
 
     @Column(name = "content", nullable = false)

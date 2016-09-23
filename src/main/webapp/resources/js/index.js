@@ -34,3 +34,45 @@ function approveComment(commentId) {
         }
     })
 }
+
+function editArticle(articleId) {
+    var data = {}
+    $("#article-form").serializeArray().map(function (kv) {
+        data[kv.name] = kv.value;
+    })
+    var json = JSON.stringify(data)
+    $.ajax({
+        url: '/admin/articles/' + articleId,
+        type: 'PUT',
+        data: json,
+        contentType: "application/json",
+        success: function () {
+            alert('提交成功')
+            location = '/admin/articles'
+        },
+        error: function () {
+            alert('提交失败，请检查参数')
+        }
+    })
+}
+
+function addArticle() {
+    var data = {}
+    $("#article-form").serializeArray().map(function (kv) {
+        data[kv.name] = kv.value;
+    })
+    var json = JSON.stringify(data)
+    $.ajax({
+        url: '/admin/articles',
+        type: 'POST',
+        data: json,
+        contentType: "application/json",
+        success: function () {
+            alert('提交成功')
+            location = '/admin/articles'
+        },
+        error: function () {
+            alert('提交失败，请检查参数')
+        }
+    })
+}

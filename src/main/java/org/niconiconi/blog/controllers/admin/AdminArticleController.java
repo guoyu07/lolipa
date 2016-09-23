@@ -42,22 +42,17 @@ public class AdminArticleController {
         return "admin/article/write";
     }
 
-    @RequestMapping(value = "/write", method = RequestMethod.POST)
-    public String addArticle(@Valid Article article, Errors errors) {
-        if (errors.hasErrors()) {
-            return "redirect:/admin/article/write";
-        }
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
+    public void addArticle(@RequestBody @Valid Article article) {
         articleService.save(article);
-        return "redirect:/admin/article";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String reEditArticle(@Valid Article article, Errors errors) {
-        if (errors.hasErrors()) {
-            return "redirect:/admin/article/edit?pid=" + article.getId();
-        }
+    @RequestMapping(value = "/{pid}", method = {RequestMethod.POST, RequestMethod.PUT})
+    @ResponseBody
+    public void reEditArticle(@PathVariable("pid") Long pid,@RequestBody @Valid Article article) {
+        article.setId(pid);
         articleService.update(article);
-        return "redirect:/admin/article";
     }
 
     @RequestMapping(value = "/{pid}", method = RequestMethod.DELETE)
