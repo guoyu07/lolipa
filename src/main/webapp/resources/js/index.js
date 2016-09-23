@@ -76,3 +76,24 @@ function addArticle() {
         }
     })
 }
+
+function editPage(pageSlug) {
+    var data = {}
+    $("#page-form").serializeArray().map(function (kv) {
+        data[kv.name] = kv.value;
+    })
+    var json = JSON.stringify(data)
+    $.ajax({
+        url: '/admin/pages/' + pageSlug,
+        type: 'PUT',
+        data: json,
+        contentType: "application/json",
+        success: function () {
+            alert('提交成功')
+            location = '/admin/settings'
+        },
+        error: function () {
+            alert('提交失败，请检查参数')
+        }
+    })
+}

@@ -32,14 +32,14 @@ public class AdminArticleController {
 
     @RequestMapping(value = "/write", method = RequestMethod.GET)
     public String getNewArticle() {
-        return "admin/article/write";
+        return "admin/article/edit";
     }
 
     @RequestMapping(value = "/{pid}", method = RequestMethod.GET)
     public String editArticle(@PathVariable("pid") Long pid, Model model) {
         Article article = articleService.findArticle(pid);
         model.addAttribute("article", article);
-        return "admin/article/write";
+        return "admin/article/edit";
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -50,7 +50,7 @@ public class AdminArticleController {
 
     @RequestMapping(value = "/{pid}", method = {RequestMethod.POST, RequestMethod.PUT})
     @ResponseBody
-    public void reEditArticle(@PathVariable("pid") Long pid,@RequestBody @Valid Article article) {
+    public void updateArticle(@PathVariable("pid") Long pid,@RequestBody @Valid Article article) {
         article.setId(pid);
         articleService.update(article);
     }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layouts/admin :: head(title='编辑页面')">
+</head>
+<body>
+<div class="header" th:include="layouts/admin :: header"></div>
+<div class="content">
+    <div class="row">
+        <div class="col-md-3" th:include="layouts/admin :: row-left"></div>
+        <div class="col-md-8">
+            <form role="form" method="post" id="page-form">
+                <div class="form-group">
+                    <label for="article-content"><h4 th:text="${page.title}"></h4></label>
+                    <textarea name="content" id="article-content" class="form-control" rows="16" placeholder="Enter content" required th:text="${page.content}"></textarea>
+                </div>
+                <input type="button" class="btn btn-default" th:onclick="'editPage(\''+${page.slug}+'\')'" value="完成编辑">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="footer" th:include="layouts/admin :: footer"></div>
+<script th:src="@{/resources/js/index.js}"></script>
+</body>
+</html>
