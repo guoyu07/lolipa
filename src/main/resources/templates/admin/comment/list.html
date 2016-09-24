@@ -25,7 +25,7 @@
                                                   height="32"></td>
                         <td class="col-xs-3">
                             <div class="comment-meta">
-                                <strong th:text="${comment.author}"></strong><br>
+                                <strong><a th:href="${comment.url}" th:text="${comment.author}"></a></strong><br>
                                 <span><a th:href="'mailto:'+${comment.mail}"
                                          target="_blank" th:text="${comment.mail}"></a></span><br>
                                 <span th:text="${comment.ip}"></span>
