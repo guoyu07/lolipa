@@ -2,7 +2,7 @@
 
 ### 环境说明
 
-* JAVA 8
+* Java 8
 * Gradle 3.0
 * Tomcat 8.5.5
 * MySQL 5.7
