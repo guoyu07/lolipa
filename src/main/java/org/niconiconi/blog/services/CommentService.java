@@ -19,11 +19,14 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    @Autowired
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
+    private final ArticleRepository articleRepository;
 
     @Autowired
-    private ArticleRepository articleRepository;
+    public CommentService(ArticleRepository articleRepository, CommentRepository commentRepository) {
+        this.articleRepository = articleRepository;
+        this.commentRepository = commentRepository;
+    }
 
     public List<Comment> findCommentsByCid(Long cid) {
         return commentRepository.findCommentsByCid(cid);

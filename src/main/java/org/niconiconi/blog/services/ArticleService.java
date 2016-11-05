@@ -21,14 +21,16 @@ import java.util.List;
 @Service
 public class ArticleService {
 
-    @Autowired
-    private ArticleRepository articleRepository;
+    private final ArticleRepository articleRepository;
+    private final PageRepository pageRepository;
+    private final CommentService commentService;
 
     @Autowired
-    private PageRepository pageRepository;
-
-    @Autowired
-    private CommentService commentService;
+    public ArticleService(ArticleRepository articleRepository, CommentService commentService, PageRepository pageRepository) {
+        this.articleRepository = articleRepository;
+        this.commentService = commentService;
+        this.pageRepository = pageRepository;
+    }
 
     public org.springframework.data.domain.Page<Article> findAllByPage(int pageNum, int pageSize) {
         org.springframework.data.domain.Page<Article> articles = articleRepository.findAll(

@@ -20,6 +20,7 @@ dependencies {
     compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
     compile 'org.springframework:spring-jdbc:4.3.3.RELEASE'
     compile 'org.springframework:spring-orm:4.3.3.RELEASE'
+    compile 'org.springframework:spring-context-support:4.3.3.RELEASE'
 
     //Spring Data
     compile 'org.springframework.data:spring-data-jpa:1.10.2.RELEASE'
@@ -52,6 +53,12 @@ dependencies {
     //json
     compile 'com.fasterxml.jackson.core:jackson-core:2.8.2'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.2'
+
+    //aspectj
+    compile 'org.aspectj:aspectjweaver:1.8.9'
+
+    //mail
+    compile 'com.sun.mail:javax.mail:1.5.6'
 
     //test
     testCompile 'junit:junit:4.11'

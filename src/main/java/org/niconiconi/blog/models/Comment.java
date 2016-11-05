@@ -134,4 +134,20 @@ public class Comment {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "coid=" + coid +
+                ", cid=" + cid +
+                ", createdAt=" + createdAt +
+                ", author='" + author + '\'' +
+                ", mail='" + mail + '\'' +
+                ", url='" + url + '\'' +
+                ", ip='" + ip + '\'' +
+                ", agent='" + agent + '\'' +
+                ", text='" + text + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

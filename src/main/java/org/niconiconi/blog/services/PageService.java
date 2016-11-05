@@ -14,8 +14,12 @@ import java.util.List;
 @Service
 public class PageService {
 
+    private final PageRepository pageRepository;
+
     @Autowired
-    private PageRepository pageRepository;
+    public PageService(PageRepository pageRepository) {
+        this.pageRepository = pageRepository;
+    }
 
     public Page findBySlug(String slug) {
         Page page = pageRepository.findBySlug(slug);

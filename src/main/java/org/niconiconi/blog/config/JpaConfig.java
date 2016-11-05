@@ -23,8 +23,12 @@ import java.util.Properties;
 @PropertySource("classpath:env.properties")
 public class JpaConfig {
 
+    private final Environment env;
+
     @Autowired
-    Environment env;
+    public JpaConfig(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public DataSource dataSource() {

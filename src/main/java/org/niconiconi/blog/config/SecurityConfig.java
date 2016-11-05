@@ -22,8 +22,12 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final DataSource dataSource;
+
     @Autowired
-    private DataSource dataSource;
+    public SecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
