@@ -33,7 +33,7 @@ public class Notification {
     @After(value = "commentAdded(comment,headers)", argNames = "comment,headers")
     public void notifyAuthor(Comment comment, HttpHeaders headers) {
         if (envService.getNotification()) {
-            String title = ". \"" + comment.getAuthor() + "\" 在您的博客发表了新的评论";
+            String title = "\"" + comment.getAuthor() + "\" 在您的博客发表了新的评论";
             String text = comment.getCoid() + ". \"" + comment.getAuthor() + "\" 发表了评论：" + comment.getText();
             emailService.sendText(envService.getMailTo(), title, text);
         }
