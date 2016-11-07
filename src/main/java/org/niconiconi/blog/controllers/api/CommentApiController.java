@@ -17,12 +17,17 @@ import javax.validation.Valid;
 @RequestMapping(value = "/api/comments")
 public class CommentApiController {
 
+    private final CommentService commentService;
+
     @Autowired
-    private CommentService commentService;
+    public CommentApiController(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
     @RequestMapping(method = RequestMethod.POST,consumes = "application/json")
     public Comment addComment(@RequestBody @Valid Comment comment, @RequestHeader HttpHeaders headers) {
         comment.setIp(headers.getFirst("X-Forwarded-For"));
+        comment.setAgent(headers.getFirst("User-Agent"));
         comment = commentService.save(comment);
         String mailMD5 = Encode.string2MD5(comment.getMail());
         String avatarUrl = "https://cdn.v2ex.com/gravatar/" + mailMD5 + "?s=32&r=G&d=mm";
