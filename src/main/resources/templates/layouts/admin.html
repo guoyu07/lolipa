@@ -10,22 +10,22 @@
     <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
 </head>
 <body>
-<div class="header" th:fragment="header">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/admin}">管理后台</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="@{/}" target="_blank">网站</a></li>
-                <li><a th:href="@{/logout}">登出</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
 <div class="content">
+    <div th:fragment="header">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" th:href="@{/admin}">管理后台</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/}" target="_blank">网站</a></li>
+                    <li><a th:href="@{/logout}">登出</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     <div class="row">
-        <div class="col-md-3" th:fragment="row-left">
+        <div class="col-xs-3" th:fragment="row-left">
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation"><a th:href="@{/admin}">网站概要</a></li>
                 <li role="presentation"><a th:href="@{/admin/articles}">文章管理</a></li>
@@ -35,13 +35,13 @@
                 <li role="presentation"><a th:href="@{/admin/settings}">个人设置</a></li>
             </ul>
         </div>
-        <div class="col-md-8"></div>
+        <div class="col-xs-9"></div>
     </div>
-</div>
-<div class="footer" th:fragment="footer">
-    <footer>
-        <span>© 2016</span>&nbsp;<a title="Lolipa" href="https://github.com/volio/Lolipa" target="_blank">Lolipa</a>
-    </footer>
+    <div class="footer" th:fragment="footer">
+        <footer>
+            <span>© 2016</span>&nbsp;<a title="Lolipa" href="https://github.com/volio/Lolipa" target="_blank">Lolipa</a>
+        </footer>
+    </div>
 </div>
 </body>
 </html>

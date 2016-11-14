@@ -3,7 +3,7 @@ html, body {
 }
 
 .content {
-    width: 1160px;
+    width: 960px;
     margin: 0 auto;
 }
 
@@ -16,7 +16,7 @@ html, body {
 }
 
 .footer {
-    padding: 2em;
+    padding: 2em 0;
     text-align: center;
 }
 

@@ -3,11 +3,11 @@
 <head th:include="layouts/admin :: head(title='编辑页面')">
 </head>
 <body>
-<div class="header" th:include="layouts/admin :: header"></div>
 <div class="content">
+    <div th:include="layouts/admin :: header"></div>
     <div class="row">
-        <div class="col-md-3" th:include="layouts/admin :: row-left"></div>
-        <div class="col-md-8">
+        <div class="col-xs-3" th:include="layouts/admin :: row-left"></div>
+        <div class="col-xs-9">
             <form role="form" method="post" id="page-form">
                 <div class="form-group">
                     <label for="article-content"><h4 th:text="${page.title}"></h4></label>
@@ -17,8 +17,8 @@
             </form>
         </div>
     </div>
+    <div class="footer" th:include="layouts/admin :: footer"></div>
 </div>
-<div class="footer" th:include="layouts/admin :: footer"></div>
 <script th:src="@{/resources/js/index.js}"></script>
 </body>
 </html>

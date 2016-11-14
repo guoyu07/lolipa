@@ -3,11 +3,11 @@
 <head th:include="layouts/admin :: head(title='个人设置')">
 </head>
 <body>
-<div class="header" th:include="layouts/admin :: header"></div>
 <div class="content">
+    <div th:include="layouts/admin :: header"></div>
     <div class="row">
-        <div class="col-md-3" th:include="layouts/admin :: row-left"></div>
-        <div class="col-md-8">
+        <div class="col-xs-3" th:include="layouts/admin :: row-left"></div>
+        <div class="col-xs-9">
             <div class="table-list">
                 <h4>独立页面</h4>
                 <table class="table table-hover">
@@ -38,8 +38,8 @@
             </form>
         </div>
     </div>
+    <div class="footer" th:include="layouts/admin :: footer"></div>
 </div>
-<div class="footer" th:include="layouts/admin :: footer"></div>
 <script th:src="@{/resources/js/index.js}"></script>
 </body>
 </html>
