@@ -26,7 +26,7 @@
         </div>
         <div class="entry">{{{ article.content }}}</div>
       </div>
-      <div id="loading" v-show="isLoading">
+      <div class="content-loading" v-show="isLoading">
         <img src="../assets/loading.gif">
       </div>
       <div class="comments-wrapp">

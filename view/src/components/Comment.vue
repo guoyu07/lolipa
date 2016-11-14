@@ -194,7 +194,6 @@
           var data = response.body
           data.author = data.author + ' (您的评论正在等待管理员审核)'
           this.comments.unshift(data)
-          this.commentNum++
         }, () => {
           document.getElementById('submit').value = "发表评论（您提交的参数有误）"
         });

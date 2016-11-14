@@ -30,8 +30,11 @@
           </div>
         </div>
       </div>
-      <div id="loading" v-show="isLoading">
+      <div class="content-loading" v-show="isLoading">
         <img src="../assets/loading.gif">
+      </div>
+      <div class="content-loading" v-show="isNotFound">
+        <p>再怎么看也没有啦 ╮(╯▽╰)╭</p>
       </div>
         <span class="line-right line"></span>
       </div>
@@ -45,6 +48,11 @@
       return {
         articles: [],
         isLoading: true
+      }
+    },
+    computed: {
+      isNotFound() {
+        return (this.articles.length==0)&&(this.isLoading==false)
       }
     },
     methods: {

@@ -1639,7 +1639,7 @@ textarea {
     margin:0 !important;
 }
 
-#loading {
+.content-loading {
   padding: 120px 0;
   text-align: center;
 }

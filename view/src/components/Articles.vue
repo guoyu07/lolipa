@@ -30,8 +30,11 @@
           </div>
         </div>
       </div>
-      <div id="loading" v-show="isLoading">
+      <div class="content-loading" v-show="isLoading">
         <img src="../assets/loading.gif">
+      </div>
+      <div class="content-loading" v-show="isNotFound">
+        <p>再怎么看也没有啦 ╮(╯▽╰)╭</p>
       </div>
       <div class="page-navi" v-if="!isLoading">
         <span class="line-left line"></span>
@@ -60,7 +63,13 @@
         last: true,
         totalPages: 3,
         number: 0,
-        isLoading: true
+        isLoading: true,
+        numberOfElements: 0
+      }
+    },
+    computed: {
+      isNotFound() {
+        return (this.numberOfElements==0)&&(this.isLoading==false)
       }
     },
     methods: {
@@ -74,6 +83,7 @@
           this.totalPages = data.totalPages
           this.number = data.number
           this.articles = data.content
+          this.numberOfElements = data.numberOfElements
         }, (response) => {
           console.log(response)
         })
@@ -84,7 +94,7 @@
       }
     },
     route: {
-      data ({ to: { params: { pageNum }}}) {
+      data ({to: {params: {pageNum}}}) {
         this.showLoading()
         this.showArticles(pageNum)
         document.title = 'Volio\'s Blog'
