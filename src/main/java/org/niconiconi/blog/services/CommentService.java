@@ -33,7 +33,7 @@ public class CommentService {
     }
 
     public List<Comment> findApprovedCommentsByCid(Long cid) {
-        return commentRepository.findCommentsByCidAndStatusOrderByCoidDesc(cid, "approved");
+        return commentRepository.findCommentsByCidAndStatus(cid, "approved");
     }
 
     public List<Comment> findWaitingComments() {

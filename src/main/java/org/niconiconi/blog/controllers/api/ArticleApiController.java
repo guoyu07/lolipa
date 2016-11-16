@@ -4,6 +4,8 @@ import org.niconiconi.blog.models.Article;
 import org.niconiconi.blog.models.Comment;
 import org.niconiconi.blog.services.ArticleService;
 import org.niconiconi.blog.services.CommentService;
+import org.niconiconi.blog.structure.CommentNode;
+import org.niconiconi.blog.utils.CommentUtil;
 import org.niconiconi.blog.utils.Encode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,11 +21,15 @@ import java.util.List;
 @RequestMapping("/api/articles")
 public class ArticleApiController {
 
-    @Autowired
-    private ArticleService articleService;
+    private final ArticleService articleService;
+
+    private final CommentService commentService;
 
     @Autowired
-    private CommentService commentService;
+    public ArticleApiController(ArticleService articleService, CommentService commentService) {
+        this.articleService = articleService;
+        this.commentService = commentService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public Page<Article> getArticles(@RequestParam(value = "page", defaultValue = "1") int pageNum,
@@ -37,20 +43,9 @@ public class ArticleApiController {
         return articleService.findHtmlArticle(pid);
     }
 
-    @RequestMapping(value = "/{pid}/comments",method = RequestMethod.GET)
-    public List<Comment> getArticleComment(@PathVariable("pid") Long pid) {
+    @RequestMapping(value = "/{pid}/comments", method = RequestMethod.GET)
+    public List<CommentNode> getArticleComment(@PathVariable("pid") Long pid) {
         List<Comment> comments = commentService.findApprovedCommentsByCid(pid);
-        comments = filterUnUsefulCommentsInfo(comments);
-        return comments;
-    }
-
-    private List<Comment> filterUnUsefulCommentsInfo(List<Comment> comments) {
-        for (Comment comment : comments) {
-            String mailMD5 = Encode.string2MD5(comment.getMail());
-            String avatarUrl = "https://cdn.v2ex.com/gravatar/" + mailMD5 + "?s=32&r=G&d=mm";
-            comment.setMail(avatarUrl);
-            comment.setIp(null);
-        }
-        return comments;
+        return CommentUtil.buildCommentsTree(comments, true);
     }
 }

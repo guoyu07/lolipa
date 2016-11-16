@@ -13,30 +13,7 @@
     <ol class="comment-main">
       <div class="none" v-if="commentNum==0">暂无评论，快来抢沙发吧！</div>
       <ol class="comment-list">
-        <li itemscope itemtype="http://schema.org/UserComments" v-for="comment in comments"
-            class="comment-body comment-parent comment-even">
-          <div class="comment-author" itemprop="creator" itemscope
-               itemtype="http://schema.org/Person">
-                                <span itemprop="image">
-                                    <img class="avatar"
-                                         v-bind:src="comment.mail"
-                                         width="32" height="32"/>
-                                </span>
-            <cite class="fn" itemprop="name"><a href="{{ comment.url }}" rel="external nofollow">{{ comment.author
-              }}</a></cite>
-            <div class="comment-reply-right">
-              <a v-on:click="reply(comment.author)">回复</a>
-            </div>
-          </div>
-          <div class="comment-meta">
-            <a>
-              <time itemprop="commentTime">{{ new Date(comment.createdAt).toLocaleString() }}</time>
-            </a>
-          </div>
-          <div class="comment-content" itemprop="commentText">
-            <p>{{ comment.text }}</p>
-          </div>
-        </li>
+        <comment-node :comments="comments" :comment-depth="commentDepth" :reply="reply"></comment-node>
       </ol>
     </ol>
     <div class="respond-bk">
@@ -151,7 +128,7 @@
                 class="fa fa-smile-o"></i></a>
             </p>
             <p class="form-btm-cancel">
-              <input type="button" onclick="hiddenReplyForm()" id="form-bottom-cancel"
+              <input type="button" v-on:click="cancelReply" id="form-bottom-cancel"
                      class="cancel" value="取消评论" input="">
             </p>
             <p class="form-submit">
@@ -165,21 +142,29 @@
 </template>
 
 <script>
+  import CommentNode from './CommentNode'
+
   export default {
     data() {
       return {
         cAuthor: '',
         cMail: '',
         cUrl: '',
-        cText: ''
+        cText: '',
+        cReplyTo: 0,
+        commentDepth: 1
       }
     },
     props: ['commentNum', 'comments', 'articleId'],
     methods: {
-      reply(author) {
-        $('.respond-bk').addClass('is-on');
-        respondResize();
-        grin('@' + author);
+      reply(coid) {
+        $('.respond-bk').addClass('is-on')
+        respondResize()
+        this.cReplyTo = coid
+      },
+      cancelReply() {
+        hiddenReplyForm()
+        this.cReplyTo = 0
       },
       submitComment() {
         var commentData = {
@@ -187,17 +172,38 @@
           author: this.cAuthor,
           mail: this.cMail,
           url: this.cUrl,
-          text: this.cText
+          text: this.cText,
+          parentId: this.cReplyTo
         }
+        document.getElementById('submit').value = "提交中..."
         this.$http.post('/api/comments', commentData).then((response) => {
           hiddenReplyForm()
+          document.getElementById('submit').value = "发表评论"
           var data = response.body
           data.author = data.author + ' (您的评论正在等待管理员审核)'
-          this.comments.unshift(data)
+          var node
+          for (var i = 0; i < this.comments.length; i++) {
+            node = this.getCommentNode(data, this.comments[i])
+            if (node != null) {
+              node.commentChildren.push(data)
+              break;
+            }
+          }
         }, () => {
           document.getElementById('submit').value = "发表评论（您提交的参数有误）"
         });
+      },
+      getCommentNode(comment, tree) {
+        if (tree.coid == comment.parentId) {
+          return tree
+        } else {
+          for (var i = 0; i < tree.commentChildren.length; i++) {
+            var commentNode = this.getCommentNode(comment, tree.commentChildren[i])
+          }
+          return commentNode
+        }
       }
-    }
+    },
+    components: {CommentNode}
   }
 </script>

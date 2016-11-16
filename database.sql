@@ -33,7 +33,8 @@ CREATE TABLE `comments` (
   `ip` varchar(64) DEFAULT NULL,
   `agent` varchar(200) DEFAULT NULL,
   `text` text,
-  `status` varchar(16) DEFAULT 'approved'
+  `status` varchar(16) DEFAULT 'approved',
+  `parent_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `pages` (

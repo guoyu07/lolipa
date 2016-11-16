@@ -55,6 +55,17 @@ public class Comment {
     @Column(name = "status", nullable = false, length = 16)
     private String status;
 
+    @Column(name = "parent_id", nullable = false)
+    private Long parentId = 0L;
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
     public Long getCoid() {
         return coid;
     }
@@ -135,19 +146,4 @@ public class Comment {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "coid=" + coid +
-                ", cid=" + cid +
-                ", createdAt=" + createdAt +
-                ", author='" + author + '\'' +
-                ", mail='" + mail + '\'' +
-                ", url='" + url + '\'' +
-                ", ip='" + ip + '\'' +
-                ", agent='" + agent + '\'' +
-                ", text='" + text + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
 }

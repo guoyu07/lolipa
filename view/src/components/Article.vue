@@ -28,7 +28,7 @@
                     </ul>
                     </span>
               <span class="dot"> - </span>
-              <span class="comment">{{ comments.length + ' 条评论' }}</span>
+              <span class="comment">{{ article.commentNum + ' 条评论' }}</span>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
       <div class="content-loading" v-show="isLoading">
         <img src="../assets/loading.gif">
       </div>
-      <comment :comment-num="comments.length" :comments="comments" :article-id="articleId"></comment>
+      <comment :comment-num="article.commentNum" :comments="comments" :article-id="articleId"></comment>
     </div>
   </div>
 </template>

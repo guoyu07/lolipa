@@ -625,7 +625,7 @@ textarea {
 }
 
 .main .content .wrapp .comments-wrapp a {
-    /*color: #9A9A9A;*/
+    color: #9A9A9A;
     cursor: pointer;
 }
 
@@ -1607,37 +1607,6 @@ textarea {
 }
 
 /*Added*/
-
-.comment-list li {
-    margin-bottom: 2.8em;
-}
-
-.comment-reply-right {
-    float: right;
-    padding-right: 15px;
-}
-
-.comment-reply-right a {
-    color: #9A9A9A !important;
-}
-
-.comment-reply-right a:before {
-    font-family: FontAwesome;
-    margin: 0 8px 0 0;
-    content: "\f112";
-}
-
-.comment-reply-right a:hover:before {
-    background-position: 0 -48px;
-}
-
-.comment-reply-right a:hover {
-    color: #2DB6CF !important;
-}
-
-.comment-form-author {
-    margin:0 !important;
-}
 
 .content-loading {
   padding: 120px 0;
