@@ -36,8 +36,7 @@
       <div class="content-loading" v-show="isNotFound">
         <p>再怎么看也没有啦 ╮(╯▽╰)╭</p>
       </div>
-        <span class="line-right line"></span>
-      </div>
+      <span class="line-right line"></span>
     </div>
   </div>
 </template>
@@ -52,7 +51,7 @@
     },
     computed: {
       isNotFound() {
-        return (this.articles.length==0)&&(this.isLoading==false)
+        return (this.articles.length == 0) && (this.isLoading == false)
       }
     },
     methods: {
@@ -70,7 +69,7 @@
       }
     },
     route: {
-      data ({ to: { params: { keyword }}}) {
+      data ({to: {params: {keyword}}}) {
         this.showLoading()
         this.showArticles(keyword)
         document.title = 'Volio\'s Blog'

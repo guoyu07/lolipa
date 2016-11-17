@@ -167,22 +167,22 @@
         this.cReplyTo = 0
       },
       submitComment() {
-        var commentData = {
+        let commentData = {
           cid: this.articleId,
           author: this.cAuthor,
           mail: this.cMail,
           url: this.cUrl,
           text: this.cText,
           parentId: this.cReplyTo
-        }
+        };
         document.getElementById('submit').value = "提交中..."
         this.$http.post('/api/comments', commentData).then((response) => {
           hiddenReplyForm()
           document.getElementById('submit').value = "发表评论"
-          var data = response.body
+          const data = response.body;
           data.author = data.author + ' (您的评论正在等待管理员审核)'
-          var node
-          for (var i = 0; i < this.comments.length; i++) {
+          let node;
+          for (let i = 0; i < this.comments.length; i++) {
             node = this.getCommentNode(data, this.comments[i])
             if (node != null) {
               node.commentChildren.push(data)
@@ -197,8 +197,9 @@
         if (tree.coid == comment.parentId) {
           return tree
         } else {
-          for (var i = 0; i < tree.commentChildren.length; i++) {
-            var commentNode = this.getCommentNode(comment, tree.commentChildren[i])
+            let commentNode
+          for (let i = 0; i < tree.commentChildren.length; i++) {
+            commentNode = this.getCommentNode(comment, tree.commentChildren[i])
           }
           return commentNode
         }
