@@ -6,7 +6,7 @@
 * Gradle 3.0
 * Tomcat 8.5.5
 * MySQL 5.7
-* NPM 3.10.3
+* npm 3.10.3
 * Node 6.5.0
 
 编译通过
@@ -17,23 +17,16 @@
 
 1.环境配置
 
-将env.example.properties复制到同级目录重命名为env.properties
+将 env.example.properties 复制到同级目录重命名为 env.properties
 
 2.安装依赖并编译
 
 执行
-
-```
-gradle install
-```
-安装依赖
-
-然后执行
 ```
 gradle build
 ```
 
-将获得的war包部署到tomcat或其他符合servlet规范的容器
+将获得的 war 包部署到 tomcat 或其他符合 servlet 规范的容器
 
 3.导入数据库结构 database.sql
 
