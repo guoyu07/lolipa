@@ -181,14 +181,19 @@
           document.getElementById('submit').value = "发表评论"
           const data = response.body;
           data.author = data.author + ' (您的评论正在等待管理员审核)'
-          let node;
-          for (let i = 0; i < this.comments.length; i++) {
-            node = this.getCommentNode(data, this.comments[i])
-            if (node != null) {
-              node.commentChildren.push(data)
-              break;
+          if(data.parentId == 0) {
+            this.comments.unshift(data)
+          }else {
+            let node;
+            for (let i = 0; i < this.comments.length; i++) {
+              node = this.getCommentNode(data, this.comments[i])
+              if (node != null) {
+                node.commentChildren.push(data)
+                break;
+              }
             }
           }
+          this.commentNum++
         }, () => {
           document.getElementById('submit').value = "发表评论（您提交的参数有误）"
         });
@@ -207,4 +212,6 @@
     },
     components: {CommentNode}
   }
+
+
 </script>
