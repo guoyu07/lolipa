@@ -15,14 +15,6 @@ CREATE TABLE `articles` (
   `comment_num` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `authorities` (
-  `username` varchar(100) NOT NULL,
-  `authority` varchar(100) NOT NULL DEFAULT 'ADMIN'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `authorities` (`username`, `authority`) VALUES
-('Admin', 'ADMIN');
-
 CREATE TABLE `comments` (
   `coid` bigint(20) UNSIGNED NOT NULL,
   `cid` bigint(20) NOT NULL,
@@ -63,10 +55,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `enabled`) VALUES
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `authorities`
-  ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `authorities_username_uindex` (`username`);
-
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`coid`),
   ADD KEY `cid` (`cid`);
@@ -88,9 +76,6 @@ ALTER TABLE `pages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
-ALTER TABLE `authorities`
-  ADD CONSTRAINT `authorities_user_username_fk` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

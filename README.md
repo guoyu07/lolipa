@@ -4,7 +4,6 @@
 
 * Java 8
 * Gradle 3.0
-* Tomcat 8.5.5
 * MySQL 5.7
 * npm 3.10.3
 * Node 6.5.0
@@ -17,7 +16,7 @@
 
 1.环境配置
 
-将 env.example.properties 复制到同级目录重命名为 env.properties
+修改 application.properties 与 env.properties
 
 2.安装依赖并编译
 
@@ -26,7 +25,10 @@
 gradle build
 ```
 
-将获得的 war 包部署到 tomcat 或其他符合 servlet 规范的容器
+运行
+```
+java -jar Lolipa.jar
+```
 
 3.导入数据库结构 database.sql
 
