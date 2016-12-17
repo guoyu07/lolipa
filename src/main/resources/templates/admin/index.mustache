@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{>layouts/admin/head}}
+</head>
+<body>
+<div class="content">
+    {{>layouts/admin/header}}
+    <div class="row">
+        {{>layouts/admin/left}}
+        <div class="col-xs-9">
+            <div class="table-list">
+                <h4>最近发布的文章</h4>
+                <table class="table table-hover">
+                    <tbody>
+                    {{#articles}}
+                    <tr>
+                        <td>{{createdAt.Month}}. {{createdAt.Date}}</td>
+                        <td>{{title}}</td>
+                    </tr>
+                    {{/articles}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-list">
+                <h4>最近得到的回复</h4>
+                <table class="table table-hover">
+                    <tbody>
+                    {{#comments}}
+                        <tr>
+                            <td>{{createdAt.Month}}. {{createdAt.Date}}</td>
+                            <td>{{author}}</td>
+                            <td>{{text}}</td>
+                        </tr>
+                    {{/comments}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {{>layouts/admin/footer}}
+</div>
+</body>
+</html>

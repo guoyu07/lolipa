@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{>layouts/admin/head}}
+</head>
+<body>
+<div class="content">
+    {{>layouts/admin/header}}
+    <div class="row">
+        {{>layouts/admin/left}}
+        <div class="col-xs-9">
+            {{^article}}
+                <form role="form" method="post" id="article-form">
+                    <div class="form-group">
+                        <label for="article-title"><h4>文章标题</h4></label>
+                        <input type="text" name="title" class="form-control" id="article-title" placeholder="Enter title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="article-content"><h4>文章内容</h4></label>
+                        <textarea name="content" id="article-content" class="form-control" rows="16" placeholder="Enter content" required></textarea>
+                    </div>
+                    <input type="button" class="btn btn-default" onclick="addArticle()" value="发布文章">
+                </form>
+            {{/article}}
+            {{#article}}
+                <form role="form" method="post" id="article-form">
+                    <div class="form-group">
+                        <label for="article-title"><h4>文章标题</h4></label>
+                        <input type="text" name="title" class="form-control" id="article-title" placeholder="Enter title" value="{{title}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="article-content"><h4>文章内容</h4></label>
+                        <textarea id="article-content" name="content" class="form-control" rows="16" placeholder="Enter content">{{content}}</textarea>
+                    </div>
+                    <input type="button" class="btn btn-default" onclick="editArticle({{id}})" value="发布文章">
+                </form>
+            {{/article}}
+        </div>
+    </div>
+    {{>layouts/admin/footer}}
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html>

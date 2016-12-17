@@ -24,11 +24,15 @@ import java.util.List;
 @RequestMapping("/admin/settings")
 public class SettingController {
 
-    @Autowired
-    private PageService pageService;
+    private final PageService pageService;
+
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public SettingController(PageService pageService, UserService userService) {
+        this.pageService = pageService;
+        this.userService = userService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String getSettings(Model model, Principal principal) {
@@ -36,6 +40,7 @@ public class SettingController {
         String username = principal.getName();
         model.addAttribute("pages", pages);
         model.addAttribute("username", username);
+        model.addAttribute("title", "个人设置");
         return "admin/setting";
     }
 

@@ -26,6 +26,7 @@ public class SinglePageController {
     public String editLinksPage(Model model) {
         Page page = pageService.findBySlug("links");
         model.addAttribute("page", page);
+        model.addAttribute("title", "编辑友情链接");
         return "admin/pages/edit";
     }
 
@@ -33,6 +34,7 @@ public class SinglePageController {
     public String editAboutPage(Model model) {
         Page page = pageService.findBySlug("about");
         model.addAttribute("page", page);
+        model.addAttribute("title", "编辑关于页面");
         return "admin/pages/edit";
     }
 

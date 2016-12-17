@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private ArticleService articleService;
+    private final ArticleService articleService;
+
+    private final CommentService commentService;
 
     @Autowired
-    private CommentService commentService;
+    public AdminController(ArticleService articleService, CommentService commentService) {
+        this.articleService = articleService;
+        this.commentService = commentService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String getAdminPage(Model model) {
@@ -30,6 +34,7 @@ public class AdminController {
         Page<Comment> comments = commentService.findAllCommentsByPage(0, 6);
         model.addAttribute("articles", articles);
         model.addAttribute("comments", comments);
+        model.addAttribute("title", "管理后台");
         return "admin/index";
     }
 }

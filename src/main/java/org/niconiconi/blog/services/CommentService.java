@@ -1,6 +1,6 @@
 package org.niconiconi.blog.services;
 
-import org.niconiconi.blog.errors.NotFoundException;
+import org.niconiconi.blog.errors.PageNotFoundException;
 import org.niconiconi.blog.models.Comment;
 import org.niconiconi.blog.repositories.CommentRepository;
 import org.niconiconi.blog.repositories.ArticleRepository;
@@ -68,7 +68,7 @@ public class CommentService {
     public Comment approveComment(Long id) {
         Comment sComment = commentRepository.findOne(id);
         if(sComment==null){
-            throw new NotFoundException();
+            throw new PageNotFoundException();
         }
         sComment.setStatus("approved");
         return commentRepository.save(sComment);

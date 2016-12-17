@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * Created by Volio on 2016/11/5.
  */
 @Service
-@PropertySource("classpath:env.properties")
+@PropertySource("classpath:config/env.properties")
 public class EnvService {
 
     private final Environment env;

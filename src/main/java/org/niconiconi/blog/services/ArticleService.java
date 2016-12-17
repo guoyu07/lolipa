@@ -1,7 +1,7 @@
 
 package org.niconiconi.blog.services;
 
-import org.niconiconi.blog.errors.NotFoundException;
+import org.niconiconi.blog.errors.PageNotFoundException;
 import org.niconiconi.blog.models.Article;
 import org.niconiconi.blog.models.Page;
 import org.niconiconi.blog.repositories.PageRepository;
@@ -44,7 +44,7 @@ public class ArticleService {
     public Article findArticle(Long pid) {
         Article article = articleRepository.findArticleById(pid);
         if (article == null) {
-            throw new NotFoundException();
+            throw new PageNotFoundException();
         }
         return article;
     }
@@ -66,7 +66,7 @@ public class ArticleService {
     public Page findPage(String slug) {
         Page page = pageRepository.findBySlug(slug);
         if (page == null) {
-            throw new NotFoundException();
+            throw new PageNotFoundException();
         }
         page.setContent(Markdown.markdownToHtml(page.getContent()));
         return page;
@@ -80,7 +80,7 @@ public class ArticleService {
     public Article update(Article article) {
         Article sArticle = articleRepository.findArticleById(article.getId());
         if(sArticle ==null){
-            throw new NotFoundException();
+            throw new PageNotFoundException();
         }
         sArticle.setTitle(article.getTitle());
         sArticle.setContent(article.getContent());

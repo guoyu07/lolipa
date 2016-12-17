@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{>layouts/admin/head}}
+</head>
+<body>
+<div class="content">
+    {{>layouts/admin/header}}
+    <div class="row">
+        {{>layouts/admin/left}}
+        <div class="col-xs-9">
+            <div class="table-list">
+                <h4>独立页面</h4>
+                <table class="table table-hover">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    {{#pages}}
+                        <tr>
+                            <td>
+                                <span>{{title}}</span>
+                            </td>
+                            <td>
+                                <a href="/admin/pages/{{slug}}">编辑</a>
+                            </td>
+                        </tr>
+                    {{/pages}}
+                    </tbody>
+                </table>
+            </div>
+            <form role="form" method="post" id="setting-profile">
+                <div class="form-group">
+                    <label for="setting-username"><h4>用户名</h4></label>
+                    <input type="text" name="username" class="form-control" id="setting-username" placeholder="用户名" value="{{username}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="setting-password"><h4>密码</h4></label>
+                    <input type="password" name="password" class="form-control" id="setting-password" placeholder="留空则不修改">
+                </div>
+                <input type="button" class="btn btn-default" onclick="updateProfile()" value="保存设置">
+            </form>
+        </div>
+    </div>
+    {{>layouts/admin/footer}}
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html>

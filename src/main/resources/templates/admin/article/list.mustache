@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{>layouts/admin/head}}
+</head>
+<body>
+<div class="content">
+    {{>layouts/admin/header}}
+    <div class="row">
+        {{>layouts/admin/left}}
+        <div class="col-xs-9">
+            <div class="table-list">
+                <h4>管理文章</h4>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>日期</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#articles}}
+                        <tr>
+                            <td class="col-xs-1">{{id}}</td>
+                            <td class="col-xs-5">
+                                <a href="/admin/articles/{{id}}">{{title}}</a>
+                            </td>
+                            <td class="col-xs-3">
+                                <span>默认分类</span>
+                            </td>
+                            <td class="col-xs-2">
+                                <span>{{createdAt.Month}}月{{createdAt.Date}}日</span>
+                            </td>
+                            <td class="col-xs-1">
+                                <a onclick="deleteArticle({{id}})">删除</a>
+                            </td>
+                        </tr>
+                    {{/articles}}
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pager">
+                        {{#prePage}}
+                            <li class="previous"><a href="/admin/articles?page={{prePageNum}}">&larr; 上一页</a></li>
+                        {{/prePage}}
+                        {{#nextPage}}
+                            <li class="next"><a href="/admin/articles?page={{nextPageNum}}">下一页 &rarr;</a></li>
+                        {{/nextPage}}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    {{>layouts/admin/footer}}
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html>

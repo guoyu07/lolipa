@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{>layouts/admin/head}}
+</head>
+<body>
+<div class="content">
+    {{>layouts/admin/header}}
+    <div class="row">
+        {{>layouts/admin/left}}
+        <div class="col-xs-9">
+            <div class="table-list">
+                <h4>管理评论</h4>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>作者</th>
+                        <th></th>
+                        <th>内容</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#comments}}
+                        <tr>
+                            <td class="col-xs-1">
+                                <img class="avatar" src="" width="32" height="32">
+                            </td>
+                            <td class="col-xs-3">
+                                <div class="comment-meta">
+                                    <strong><a href="{{url}}">{{author}}</a></strong><br>
+                                    <span><a href="mailto:{{mail}}" target="_blank">{{mail}}</a></span><br>
+                                    <span>{{ip}}</span>
+                                </div>
+                            </td>
+                            <td class="col-xs-7">
+                                <div class="comment-body">
+                                    <div class="comment-date">
+                                        <span>{{createdAt.Month}}月{{createdAt.Date}}日</span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>{{text}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-xs-1">
+                                <div class="comment-action">
+                                    <a onclick="approveComment({{coid}})">通过</a><br>
+                                    <a>待审核</a><br>
+                                    <a onclick="deleteComment({{coid}})">删除</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/comments}}
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pager">
+                        {{#prePage}}
+                            <li class="previous"><a href="/admin/comments?page={{prePageNum}}">&larr; 上一页</a></li>
+                        {{/prePage}}
+                        {{#nextPage}}
+                            <li class="next"><a href="/admin/comments?page={{nextPageNum}}">下一页 &rarr;</a></li>
+                        {{/nextPage}}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    {{>layouts/admin/footer}}
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html>

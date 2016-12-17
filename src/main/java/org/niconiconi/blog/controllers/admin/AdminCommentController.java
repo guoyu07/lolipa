@@ -20,8 +20,12 @@ import java.util.Map;
 @RequestMapping("/admin/comments")
 public class AdminCommentController {
 
+    private final CommentService commentService;
+
     @Autowired
-    private CommentService commentService;
+    public AdminCommentController(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String getComments(@RequestParam(value = "page", defaultValue = "1") int pageNum, Model model) {
@@ -30,8 +34,22 @@ public class AdminCommentController {
         Map<Long, String> avatarMap = getAvatars(comments);
         model.addAttribute("comments", comments);
         model.addAttribute("avatarMap", avatarMap);
-        model.addAttribute("allPageNum", comments.getTotalPages());
-        model.addAttribute("pageNum", pageNum + 1);
+
+        if (pageNum > 0) {
+            model.addAttribute("prePage", true);
+            model.addAttribute("prePageNum", pageNum);
+        } else {
+            model.addAttribute("prePage", false);
+        }
+
+        if ((pageNum + 1) < comments.getTotalPages()) {
+            model.addAttribute("nextPage", true);
+            model.addAttribute("nextPageNum", pageNum + 2);
+        }else {
+            model.addAttribute("nextPage", false);
+        }
+
+        model.addAttribute("title", "管理评论");
         return "admin/comment/list";
     }
 
@@ -41,8 +59,9 @@ public class AdminCommentController {
         Map<Long, String> avatarMap = getAvatars(comments);
         model.addAttribute("comments", comments);
         model.addAttribute("avatarMap", avatarMap);
-        model.addAttribute("allPageNum", 1);
-        model.addAttribute("pageNum", 1);
+        model.addAttribute("prePage", false);
+        model.addAttribute("nextPage", false);
+        model.addAttribute("title", "审核评论");
         return "admin/comment/list";
     }
 

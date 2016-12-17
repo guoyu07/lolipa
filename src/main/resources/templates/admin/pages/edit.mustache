@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{>layouts/admin/head}}
+</head>
+<body>
+<div class="content">
+    {{>layouts/admin/header}}
+    <div class="row">
+        {{>layouts/admin/left}}
+        <div class="col-xs-9">
+            <form role="form" method="post" id="page-form">
+                <div class="form-group">
+                    <label for="article-content"><h4>{{page.title}}</h4></label>
+                    <textarea name="content" id="article-content" class="form-control" rows="16" placeholder="Enter content" required>{{page.content}}</textarea>
+                </div>
+                <input type="button" class="btn btn-default" onclick="editPage('{{page.slug}}')" value="完成编辑">
+            </form>
+        </div>
+    </div>
+    {{>layouts/admin/footer}}
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html>
