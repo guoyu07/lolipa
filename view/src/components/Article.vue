@@ -22,12 +22,6 @@
             <div class="white">
               <span class="date">{{ new Date(article.createdAt).toLocaleString() }}</span>
               <span class="dot"> - </span>
-              <span class="category">
-                    <ul class="post-categories">
-                        <li><a href="#">默认分类</a></li>
-                    </ul>
-                    </span>
-              <span class="dot"> - </span>
               <span class="comment">{{ article.commentNum + ' 条评论' }}</span>
             </div>
           </div>
