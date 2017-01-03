@@ -19,10 +19,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.4.2.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-security:1.4.2.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-mail:1.4.2.RELEASE'
-    
-    //mustache
-    compile 'com.github.sps.mustache:mustache-spring-view:1.4'
-    compile 'com.samskivert:jmustache:1.13'
 
     //Hibernate
     compile 'org.hibernate:hibernate-core:5.2.2.Final'
