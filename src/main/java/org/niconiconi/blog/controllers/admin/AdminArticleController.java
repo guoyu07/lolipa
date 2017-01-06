@@ -29,14 +29,14 @@ public class AdminArticleController {
         org.springframework.data.domain.Page<Article> articles = articleService.findAllByPage(pageNum, 10);
         model.addAttribute("articles", articles);
 
-        if (pageNum > 0) {
+        if (!articles.isFirst()) {
             model.addAttribute("prePage", true);
             model.addAttribute("prePageNum", pageNum);
         } else {
             model.addAttribute("prePage", false);
         }
 
-        if ((pageNum + 1) < articles.getTotalPages()) {
+        if (!articles.isLast()) {
             model.addAttribute("nextPage", true);
             model.addAttribute("nextPageNum", pageNum + 2);
         }else {

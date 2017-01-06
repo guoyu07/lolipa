@@ -69,7 +69,7 @@
     methods: {
       showArticles(pageNum) {
         var page = pageNum ? pageNum : 1
-        this.$http.get('/api/articles?&page=' + page).then((response) => {
+        this.$http.get('/api/articles?page=' + page).then((response) => {
           var data = response.body
           this.isLoading = false
           this.first = data.first

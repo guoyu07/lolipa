@@ -30,17 +30,17 @@ public class AdminCommentController {
     @RequestMapping(method = RequestMethod.GET)
     public String getComments(@RequestParam(value = "page", defaultValue = "1") int pageNum, Model model) {
         pageNum = pageNum < 1 ? 0 : pageNum - 1;
-        Page<Comment> comments = commentService.findAllCommentsByPage(pageNum, 10);
+        Page<Comment> comments = commentService.findAllCommentsByPage(pageNum, 8);
         model.addAttribute("comments", comments);
 
-        if (pageNum > 0) {
+        if (!comments.isFirst()) {
             model.addAttribute("prePage", true);
             model.addAttribute("prePageNum", pageNum);
         } else {
             model.addAttribute("prePage", false);
         }
 
-        if ((pageNum + 1) < comments.getTotalPages()) {
+        if (!comments.isLast()) {
             model.addAttribute("nextPage", true);
             model.addAttribute("nextPageNum", pageNum + 2);
         }else {
