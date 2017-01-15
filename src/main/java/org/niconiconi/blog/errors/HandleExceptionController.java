@@ -13,7 +13,11 @@ public class HandleExceptionController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(PageNotFoundException.class)
-    public void NotFoundPage() {
+    public void pageNotFoundHandler() {
+    }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ParameterNotMatchException.class)
+    public void parameterNotMatchHandler(){
     }
 }

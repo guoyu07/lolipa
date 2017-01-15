@@ -1,8 +1,11 @@
 package org.niconiconi.blog.services;
 
+import org.niconiconi.blog.models.Article;
+import org.niconiconi.blog.models.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,6 +21,17 @@ public class EmailService {
     public EmailService(JavaMailSender mailSender, EnvService envService) {
         this.mailSender = mailSender;
         this.envService = envService;
+    }
+
+    //异步发送评论通知
+    @Async
+    public void sendCommentNotice(Comment comment, Article article) {
+        if (envService.getNotification()) {
+            String title = "\"" + comment.getAuthor() + "\" 发表了新的评论";
+            String text = comment.getCoid() + ". \"" + comment.getAuthor() + "\" 在文章 \""
+                    + article.getTitle() + "\"" + " 中发表了评论：\n\n" + comment.getText();
+            sendText(envService.getMailTo(), title, text);
+        }
     }
 
     public void sendText(String to, String title, String text) {
