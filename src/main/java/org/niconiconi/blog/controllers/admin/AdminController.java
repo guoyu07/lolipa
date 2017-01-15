@@ -30,10 +30,12 @@ public class AdminController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getAdminPage(Model model) {
-        Page<Article> articles = articleService.findAllByPage(0, 6);
-        Page<Comment> comments = commentService.findAllCommentsByPage(0, 6);
-        model.addAttribute("articles", articles);
-        model.addAttribute("comments", comments);
+        Long articleNum = articleService.getArticleCount();
+        Long commentNum = commentService.getCommentCount();
+        Long waitingNum = commentService.getWaitingCount();
+        model.addAttribute("articleNum", articleNum);
+        model.addAttribute("commentNum", commentNum);
+        model.addAttribute("waitingNum", waitingNum);
         model.addAttribute("title", "管理后台");
         return "admin/index";
     }

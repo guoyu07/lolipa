@@ -91,4 +91,12 @@ public class CommentService {
         sComment.setStatus("approved");
         return commentRepository.save(sComment);
     }
+
+    public Long getCommentCount() {
+        return commentRepository.count();
+    }
+
+    public Long getWaitingCount() {
+        return commentRepository.countByStatus("waiting");
+    }
 }

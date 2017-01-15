@@ -10,29 +10,21 @@
         {{>layouts/admin/left}}
         <div class="col-xs-9">
             <div class="table-list">
-                <h4>最近发布的文章</h4>
+                <h4>网站概要</h4>
                 <table class="table table-hover">
                     <tbody>
-                    {{#articles}}
-                    <tr>
-                        <td>{{createdAt}}</td>
-                        <td>{{title}}</td>
-                    </tr>
-                    {{/articles}}
-                    </tbody>
-                </table>
-            </div>
-            <div class="table-list">
-                <h4>最近得到的回复</h4>
-                <table class="table table-hover">
-                    <tbody>
-                    {{#comments}}
                         <tr>
-                            <td>{{createdAt}}</td>
-                            <td>{{author}}</td>
-                            <td>{{text}}</td>
+                            <td>已发布文章数量</td>
+                            <td>{{articleNum}}</td>
                         </tr>
-                    {{/comments}}
+                        <tr>
+                            <td>得到的评论数量</td>
+                            <td>{{commentNum}}</td>
+                        </tr>
+                        <tr>
+                            <td>待审核评论数量</td>
+                            <td>{{waitingNum}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

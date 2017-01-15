@@ -72,6 +72,10 @@ public class ArticleService {
         return page;
     }
 
+    public Long getArticleCount() {
+        return articleRepository.count();
+    }
+
     public Article save(Article article) {
         article.setCreatedAt(new Date());
         return articleRepository.save(article);

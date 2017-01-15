@@ -30,7 +30,7 @@
                                 <div class="comment-meta">
                                     <strong><a href="{{url}}">{{author}}</a></strong><br>
                                     <span><a href="mailto:{{mail}}" target="_blank">{{mail}}</a></span><br>
-                                    <span>{{ip}}</span>
+                                    <span>{{#ip}}{{.}}{{/ip}}</span>
                                 </div>
                             </td>
                             <td class="col-xs-7">
@@ -46,7 +46,7 @@
                             <td class="col-xs-1">
                                 <div class="comment-action">
                                     <a onclick="approveComment({{coid}})">通过</a><br>
-                                    <a>待审核</a><br>
+                                    <a href="/#!/article/{{cid}}" target="_blank">查看</a><br>
                                     <a onclick="deleteComment({{coid}})">删除</a>
                                 </div>
                             </td>
