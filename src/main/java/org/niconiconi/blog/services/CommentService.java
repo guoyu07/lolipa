@@ -1,11 +1,12 @@
 package org.niconiconi.blog.services;
 
+import org.niconiconi.blog.adapter.NoticeAdapter;
 import org.niconiconi.blog.errors.PageNotFoundException;
 import org.niconiconi.blog.errors.ParameterNotMatchException;
 import org.niconiconi.blog.models.Article;
 import org.niconiconi.blog.models.Comment;
-import org.niconiconi.blog.repositories.CommentRepository;
 import org.niconiconi.blog.repositories.ArticleRepository;
+import org.niconiconi.blog.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,13 +24,13 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final ArticleRepository articleRepository;
-    private final EmailService emailService;
+    private final NoticeAdapter noticeService;
 
     @Autowired
-    public CommentService(ArticleRepository articleRepository, CommentRepository commentRepository, EmailService emailService) {
+    public CommentService(ArticleRepository articleRepository, CommentRepository commentRepository, NoticeAdapter noticeService) {
         this.articleRepository = articleRepository;
         this.commentRepository = commentRepository;
-        this.emailService = emailService;
+        this.noticeService = noticeService;
     }
 
     public List<Comment> findCommentsByCid(Long cid) {
@@ -68,7 +69,7 @@ public class CommentService {
         int count = commentRepository.countCommentsByCid(comment.getCid());
         articleRepository.changeCommentNum(comment.getCid(), count);
         //发送通知
-        emailService.sendCommentNotice(comment, article);
+        noticeService.sendCommentNotice(comment, article);
         return comment;
     }
 

@@ -1,7 +1,9 @@
-package org.niconiconi.blog.services;
+package org.niconiconi.blog.support;
 
+import org.niconiconi.blog.adapter.NoticeAdapter;
 import org.niconiconi.blog.models.Article;
 import org.niconiconi.blog.models.Comment;
+import org.niconiconi.blog.services.EnvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @EnableAsync
-public class EmailService {
+public class EmailService implements NoticeAdapter {
 
     private final JavaMailSender mailSender;
     private final EnvService envService;
@@ -26,6 +28,7 @@ public class EmailService {
     }
 
     //异步发送评论通知
+    @Override
     @Async
     public void sendCommentNotice(Comment comment, Article article) {
         if (envService.getNotification()) {
@@ -36,7 +39,7 @@ public class EmailService {
         }
     }
 
-    public void sendText(String to, String title, String text) {
+    private void sendText(String to, String title, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(envService.getMailFrom());
         message.setTo(to);
