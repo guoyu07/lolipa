@@ -19,7 +19,7 @@
                         <label for="article-content"><h4>文章内容</h4></label>
                         <textarea name="content" id="article-content" class="form-control" rows="16" placeholder="Enter content" required></textarea>
                     </div>
-                    <input type="button" class="btn btn-default" onclick="addArticle()" value="发布文章">
+                    <input type="button" class="btn btn-default" onclick="article.add()" value="发布文章">
                 </form>
             {{/article}}
             {{#article}}
@@ -32,13 +32,13 @@
                         <label for="article-content"><h4>文章内容</h4></label>
                         <textarea id="article-content" name="content" class="form-control" rows="16" placeholder="Enter content">{{content}}</textarea>
                     </div>
-                    <input type="button" class="btn btn-default" onclick="editArticle({{id}})" value="发布文章">
+                    <input type="button" class="btn btn-default" onclick="article.edit({{id}})" value="发布文章">
                 </form>
             {{/article}}
         </div>
     </div>
     {{>layouts/admin/footer}}
 </div>
-<script src="/resources/js/index.js"></script>
+<script src="/js/index.js"></script>
 </body>
 </html>

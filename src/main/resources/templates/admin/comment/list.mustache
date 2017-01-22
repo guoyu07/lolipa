@@ -45,9 +45,9 @@
                             </td>
                             <td class="col-xs-1">
                                 <div class="comment-action">
-                                    <a onclick="approveComment({{coid}})">通过</a><br>
+                                    <a onclick="comment.approve({{coid}})">通过</a><br>
                                     <a href="/#!/article/{{cid}}" target="_blank">查看</a><br>
-                                    <a onclick="deleteComment({{coid}})">删除</a>
+                                    <a onclick="comment.delete({{coid}})">删除</a>
                                 </div>
                             </td>
                         </tr>
@@ -69,6 +69,6 @@
     </div>
     {{>layouts/admin/footer}}
 </div>
-<script src="/resources/js/index.js"></script>
+<script src="/js/index.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ dependencies {
     compile 'org.hibernate:hibernate-validator:5.2.4.Final'
 
     //database
-    compile 'mysql:mysql-connector-java:+'
+    compile 'mysql:mysql-connector-java:6.0.5'
 
     //markdown
     compile 'org.pegdown:pegdown:1.6.0'

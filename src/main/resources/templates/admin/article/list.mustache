@@ -35,7 +35,7 @@
                                 <span>{{createdAt}}</span>
                             </td>
                             <td class="col-xs-1">
-                                <a onclick="deleteArticle({{id}})">删除</a>
+                                <a onclick="article.delete({{id}})">删除</a>
                             </td>
                         </tr>
                     {{/articles}}
@@ -56,6 +56,6 @@
     </div>
     {{>layouts/admin/footer}}
 </div>
-<script src="/resources/js/index.js"></script>
+<script src="/js/index.js"></script>
 </body>
 </html>
