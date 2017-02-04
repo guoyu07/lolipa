@@ -63,7 +63,7 @@ public class CommentUtil {
             commentNode.setCreatedAt(comment.getCreatedAt());
             commentNode.setAuthor(comment.getAuthor());
             String mailMD5 = Encode.string2MD5(comment.getMail());
-            String avatar = "https://cdn.v2ex.com/gravatar/" + mailMD5 + "?s=32&r=G&d=mm";
+            String avatar = "https://secure.gravatar.com/avatar/" + mailMD5 + "?s=32&r=G&d=mm";
             commentNode.setAvatar(avatar);
             commentNode.setUrl(comment.getUrl());
             commentNode.setText(comment.getText());

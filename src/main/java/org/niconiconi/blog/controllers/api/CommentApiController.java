@@ -32,7 +32,7 @@ public class CommentApiController {
         comment = commentService.save(comment);
 
         String mailMD5 = Encode.string2MD5(comment.getMail());
-        String avatarUrl = "https://cdn.v2ex.com/gravatar/" + mailMD5 + "?s=32&r=G&d=mm";
+        String avatarUrl = "https://secure.gravatar.com/avatar/" + mailMD5 + "?s=32&r=G&d=mm";
 
         CommentNode commentNode = new CommentNode();
         commentNode.setCoid(comment.getCoid());
